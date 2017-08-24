@@ -1,0 +1,73 @@
+body {
+	font-family: 'Garamond', 'Amiri', serif;
+	font-size: x-large;
+	line-height: 150%;
+	max-width: 777px;
+	padding: 22px;
+	margin: 0 auto !important;
+}
+
+h1 {
+	font-family: 'Patua One', cursive;
+	font-size: 200%;
+	font-weight: normal;
+	margin: 11px -2px 33px;
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: 'Amaranth', sans-serif;
+	font-weight: normal;
+	margin: 33px -2px 11px;
+}
+
+h2 {
+	font-size: 170%;
+}
+
+h3 {
+	font-size: 160%;
+}
+
+h4 {
+	font-size: 150%;
+}
+
+h5 {
+	font-size: 140%;
+}
+
+h6 {
+	font-size: 130%;
+}
+
+pre, code, tt {
+	font-family: 'Anonymous pro', monospace;
+}
+
+pre {
+	padding: 11px;
+	padding-left: 16px;
+}
+
+code {
+	padding: 5px;
+}
+
+pre code {
+	padding: 0;
+}
+
+blockquote {
+	margin: 0;
+	border-left-style: solid;
+	border-left-width: 5px;
+	padding-left: 11px;
+}
+
+p {
+	margin: 22px 0 22px 0;
+}
+
+a {
+	text-decoration: none;
+}

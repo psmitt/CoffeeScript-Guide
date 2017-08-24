@@ -1,0 +1,16 @@
+body {
+	background-color: #FFEEDD;
+	color: #0F0800;
+}
+
+blockquote {
+	border-left-color: #DDCCBB;
+}
+
+pre, code, tt {
+	background-color: #EEDDCC;
+}
+
+a {
+	color: #2244FF;
+}
