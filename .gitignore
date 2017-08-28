@@ -2,3 +2,4 @@ node_modules/
 debug.log
 fonts.txt
 Lorem Ipsum.md
+package-lock.json
