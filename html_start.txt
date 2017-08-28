@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css?family=Amaranth" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Amiri" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Averia+Libre" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet"/>
+<link href="text.css" rel="stylesheet"/>
+<link href="menu.css" rel="stylesheet"/>
+<link id ="theme" href="LightGrey.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="menu">
+<table>
+<tr><th>Select Theme</th></tr>
+<tr><td id="LightGrey" onclick=apply(this.id)>Light Grey</td></tr>
+<tr><td id="DarkGrey" onclick=apply(this.id)>Dark Grey</td></tr>
+<tr><td id="LightBrown" onclick=apply(this.id)>Light Brown</td></tr>
+<tr><td id="DarkBrown" onclick=apply(this.id)>Dark Brown</td></tr>
+<tr><th>Select Folding</th></tr>
+<tr><td class="folding" onclick=setFolding('none')>no folding</td></tr>
+<tr><td class="folding" onclick=setFolding('flat')>flat folding</td></tr>
+<tr><td class="folding" onclick=setFolding('indent')>indent folding</td></tr>
+</table>
+<span id="icon" title="Menu ON/OFF"
+onclick=toggle(this.previousSibling.previousSibling)>&#9776;</span>
+</div>

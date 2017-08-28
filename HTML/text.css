@@ -1,23 +1,27 @@
+html {
+  overflow-y: scroll;
+}
+
 body {
 	font-family: 'Garamond', 'Amiri', serif;
 	font-size: x-large;
 	line-height: 150%;
 	max-width: 777px;
-	padding: 22px;
-	margin: 0 auto !important;
+	padding-left: 44px;
+	margin: 0 auto;
 }
 
 h1 {
-	font-family: 'Patua One', cursive;
+	font-family: 'Patua One', 'Averia Libre', cursive;
 	font-size: 200%;
 	font-weight: normal;
-	margin: 11px -2px 33px;
+	margin: 33px -40px 33px;
 }
 
 h2, h3, h4, h5, h6 {
-  font-family: 'Amaranth', sans-serif;
+  font-family: 'Amaranth', 'Averia Libre', sans-serif;
 	font-weight: normal;
-	margin: 33px -2px 11px;
+	margin: 33px -40px 11px;
 }
 
 h2 {
@@ -70,4 +74,13 @@ p {
 
 a {
 	text-decoration: none;
+}
+
+.triangle {
+	font-family: 'Anonymous pro', monospace;
+	font-size: 30px;
+	display: inline-block;
+	vertical-align: top;
+	width: 35px;
+	cursor: pointer;
 }

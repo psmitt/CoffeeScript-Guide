@@ -1,5 +1,11 @@
 # Lorem Ipsum
 
+<table>
+<tr><th>Header</th><th>Another header</th></tr>
+<tr><td>field 1</td><td>something</td></tr>
+<tr><td>field 2</td><td>something else</td></tr>
+</table>
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium nunc non pharetra mollis. Sed viverra porta sapien, at fringilla erat interdum et. Praesent ultricies arcu et fermentum elementum.
 
 ## Maecenas Id Massa

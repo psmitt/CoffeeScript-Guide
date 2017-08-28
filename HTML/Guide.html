@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="https://fonts.googleapis.com/css?family=Amaranth" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Amiri" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
+<meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css?family=Amaranth" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Amiri" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Averia+Libre" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet"/>
 <link href="text.css" rel="stylesheet"/>
 <link href="menu.css" rel="stylesheet"/>
 <link id ="theme" href="LightGrey.css" rel="stylesheet"/>
@@ -13,13 +15,22 @@
 <div id="menu">
 <table>
 <tr><th>Select Theme</th></tr>
-<tr><td id="LightGrey">Light Grey</td></tr>
-<tr><td id="DarkGrey">Dark Grey</td></tr>
-<tr><td id="LightBrown">Light Brown</td></tr>
-<tr><td id="DarkBrown">Dark Brown</td></tr>
+<tr><td id="LightGrey" onclick=apply(this.id)>Light Grey</td></tr>
+<tr><td id="DarkGrey" onclick=apply(this.id)>Dark Grey</td></tr>
+<tr><td id="LightBrown" onclick=apply(this.id)>Light Brown</td></tr>
+<tr><td id="DarkBrown" onclick=apply(this.id)>Dark Brown</td></tr>
+<tr><th>Select Folding</th></tr>
+<tr><td class="folding" onclick=setFolding('none')>no folding</td></tr>
+<tr><td class="folding" onclick=setFolding('flat')>flat folding</td></tr>
+<tr><td class="folding" onclick=setFolding('indent')>indent folding</td></tr>
 </table>
-<span id="icon">&#9776;</span>
+<span id="icon" title="Menu ON/OFF"
+onclick=toggle(this.previousSibling.previousSibling)>&#9776;</span>
 </div><h1>Lorem Ipsum</h1>
+<p>| Header  | Another header |
+|---------|----------------|
+| field 1 | something      |
+| field 2 | something else |</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium nunc non pharetra mollis. Sed viverra porta sapien, at fringilla erat interdum et. Praesent ultricies arcu et fermentum elementum.</p>
 <h2>Maecenas Id Massa</h2>
 <p>Maecenas id massa gravida <strong>felis</strong> consectetur efficitur. Phasellus elit mauris, suscipit et orci non, facilisis pulvinar quam. Aliquam vitae lorem ante. <em>Vivamus in neque ante.</em> Ut vitae dictum ante. Etiam dignissim interdum quam eget euismod. <a href="http://dev.nodeca.com">link text</a> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
@@ -78,3 +89,6 @@ console.log(foo(5));
 </ol>
 <h5>Tables</h5>
 <h6>Links</h6>
+<script src="folding.js"></script>
+</body>
+</html>
