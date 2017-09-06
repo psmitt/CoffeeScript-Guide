@@ -6,22 +6,23 @@ body {
 	font-family: 'Garamond', 'Amiri', serif;
 	font-size: x-large;
 	line-height: 150%;
-	max-width: 777px;
+	max-width: 999px;
 	padding-left: 44px;
 	margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Amaranth', 'Averia Libre', sans-serif;
+	font-weight: normal;
+	padding-left: 36px;
+	text-indent: -36px;
+	margin: 33px -40px 11px;
 }
 
 h1 {
 	font-family: 'Patua One', 'Averia Libre', cursive;
 	font-size: 200%;
-	font-weight: normal;
-	margin: 33px -40px 33px;
-}
-
-h2, h3, h4, h5, h6 {
-  font-family: 'Amaranth', 'Averia Libre', sans-serif;
-	font-weight: normal;
-	margin: 33px -40px 11px;
+	line-height: 120%;
 }
 
 h2 {
@@ -83,4 +84,5 @@ a {
 	vertical-align: top;
 	width: 35px;
 	cursor: pointer;
+	text-indent: 0;
 }

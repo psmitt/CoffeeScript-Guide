@@ -26,69 +26,204 @@
 </table>
 <span id="icon" title="Menu ON/OFF"
 onclick=toggle(this.previousSibling.previousSibling)>&#9776;</span>
-</div><h1>Lorem Ipsum</h1>
-<p>| Header  | Another header |
-|---------|----------------|
-| field 1 | something      |
-| field 2 | something else |</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium nunc non pharetra mollis. Sed viverra porta sapien, at fringilla erat interdum et. Praesent ultricies arcu et fermentum elementum.</p>
-<h2>Maecenas Id Massa</h2>
-<p>Maecenas id massa gravida <strong>felis</strong> consectetur efficitur. Phasellus elit mauris, suscipit et orci non, facilisis pulvinar quam. Aliquam vitae lorem ante. <em>Vivamus in neque ante.</em> Ut vitae dictum ante. Etiam dignissim interdum quam eget euismod. <a href="http://dev.nodeca.com">link text</a> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-<ul>
-<li>Mauris vitae leo a <strong>nulla</strong> maximus iaculis vel sed est.</li>
-<li>Nullam <em>lacinia</em> ex in ante eleifend, non <a href="http://google.com">dictum</a> nulla tristique.
-<ul>
-<li>Ut consectetur velit vel ante semper, eget fermentum ipsum fringilla.
-<ul>
-<li>In iaculis nisi at rhoncus posuere.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3>Nullam Scelerisque Tempor</h3>
-<p>Nullam scelerisque tempor tempus. Nam tempus, quam a maximus venenatis, lorem arcu dignissim turpis, non efficitur nulla ligula non elit.</p>
-<blockquote>
-<p>In gravida risus lectus,</p>
-<blockquote>
-<p>quis <em>vestibulum</em> mi efficitur nec.
-In hac habitasse platea dictumst.
-Aliquam arcu mi, viverra et placerat eu, mollis eu metus.</p>
-</blockquote>
-</blockquote>
-<h4>Donec Augue Neque</h4>
-<p>Donec augue neque, tempus <code>molestie eleifend</code> vel, venenatis a orci. Etiam nec lacus id lectus posuere molestie ac ac massa. Etiam tellus orci, pellentesque id sem nec, mattis blandit dolor.</p>
-<blockquote>
-<p>In gravida risus lectus,</p>
-<blockquote>
-<p>quis <em>vestibulum</em> mi efficitur nec.
-In hac habitasse platea dictumst.
-Aliquam arcu mi, viverra et placerat eu, mollis eu metus.</p>
-</blockquote>
-</blockquote>
-<pre><code>// Some comments
-line 1 of code: Il1|-* 0Oo@&amp;([{|}])$2&lt;3&gt;2
-line 2 of code: Il1|-* 0Oo@&amp;([{|}])$2&lt;3&gt;2
-line 3 of code: Il1|-* 0Oo@&amp;([{|}])$2&lt;3&gt;2
+</div>
+<h1>An Interactive Guide <br/> to CoffeeScript Universe</h1>
+<h2>Short Introduction to Everything</h2>
+<p><a href="http://coffeescript.org/v2">CoffeeScript</a> is a programming language that compiles to JavaScript. JavaScript is based on the ECMAScript Language Specification (  <a href="https://www.ecma-international.org/ecma-262">ECMA-262</a> ). The execution model of ECMAScript is implemented in <a href="https://nodejs.org">Node.js</a> JavaScript runtime system, built on Google Chrome's V8 JavaScript engine. <a href="https://developers.google.com/v8">V8</a> compiles and executes JavaScript source code, handles memory allocation for objects, and garbage collects objects it no longer needs. V8 provides all the data types, operators, objects and functions specified in the ECMA-262 standard.</p>
+<p>Depending on the host environment CoffeeScript can be used as a domain-specific scripting language for web browsers, or as a general-purpose programming language for various software platforms. The host environment of objects and facilities completes the capabilities of the scripting language.</p>
+<p>This Guide follows the <em>learning by doing</em> principle, using the methodology of exploratory programming for teaching the elements of CoffeeScript language while discovering the runtime environment. The domain exploration is made possible by an interactive language shell running a read-eval-print loop ( <a href="https://nodejs.org/api/repl.html">REPL</a> ). REPL takes single user inputs, evaluates them, and returns the result to the user.</p>
+<h2>Let Us Have Coffee</h2>
+<p>Install the current version of <a href="https://nodejs.org">Node.js</a>, then open a command line interface and install the newest version of CoffeeScript:</p>
+<pre><code>os&gt; npm install -g coffeescript@next
 </code></pre>
-<hr />
-<p>Ut fringilla ligula aliquet justo porttitor dictum. Nunc auctor euismod cursus. Donec elit urna, rhoncus vel imperdiet ac, ultrices viverra libero. Nulla vitae quam feugiat, auctor tortor et, auctor sapien.</p>
-<p>Ut fringilla ligula aliquet justo porttitor dictum. Nunc auctor euismod cursus. Donec elit urna, rhoncus vel imperdiet ac, ultrices viverra libero. Nulla vitae quam feugiat, auctor tortor et, auctor sapien.</p>
-<pre><code class="language-js">var foo = function (bar) {
-  return bar++;
-};
+<p>Enter the interactive CoffeeScript REPL by typing <code>coffee</code>. In order to exit REPL type <code>.exit</code>.</p>
+<pre><code>os&gt; coffee
+coffee&gt; .exit
+os&gt;
+</code></pre>
+<h3>Autocomplete</h3>
+<p>Pressing TAB displays an available name in the current scope, starting with the already typed characters. In case of zero or multiple options no completion happens: pressing TAB for a second time will then display all of the autocomplete options.</p>
+<p>Enter REPL, type <code>.</code> and press TAB twice to see the available commands for controlling the REPL session. Continue typing with <code>h</code> and press TAB once to have <code>.help</code> displayed. Press ENTER to see the result of <code>.help</code> command.</p>
+<pre><code>os&gt; coffee
+coffee&gt; .
+break   clear   editor  exit    help    load    save
 
-console.log(foo(5));
+coffee&gt; .help
+.break    Sometimes you get stuck, this gets you out
+.clear    Alias for .break
+.editor   Enter editor mode
+.exit     Exit the REPL
+.help     Print this help message
+.load     Load code from a file into this REPL session
+.save     Save all evaluated commands in this REPL session to a file
+coffee&gt;
 </code></pre>
-<h4>Duis sit amet eros consequat</h4>
-<p>Duis sit amet eros consequat, malesuada leo in, pharetra odio. Praesent metus dolor, tempor id nisl nec, placerat <code>ullamcorper</code> lacus. Ut non magna quis nibh scelerisque venenatis sed et orci. Curabitur faucibus varius blandit.</p>
-<ol>
-<li>Morbi consequat nec neque eu pharetra.</li>
-<li>Nam viverra eu nisi eu tempor.</li>
-<li>Praesent efficitur, orci ac sollicitudin pharetra.</li>
-</ol>
-<h5>Tables</h5>
-<h6>Links</h6>
+<p>The shortcut for <code>.break</code> is CTRL+C which can be pressed even if typing is not possible due to a stuck process. Pressing CTRL+C twice in an empty line is equivalent to <code>.exit</code>.</p>
+<pre><code>coffee&gt;
+(To exit, press ^C again or type .exit)
+coffee&gt;
+
+os&gt;
+</code></pre>
+<h2>Do the Math</h2>
+<p>An unsurprising capability of CoffeeScript is the support of calculations. Using the well-known <a href="https://standards.ieee.org/findstds/standard/754-2008.html">arithmetic</a> operators in the formulas, the result is immediately displayed by pressing ENTER at the end of the line. The last result, represented by the underscore character, is always reusable in the subsequent calculation.</p>
+<pre><code>coffee&gt; -1 + 2 * 3 / 4
+0.5
+coffee&gt; _ + 6 * 7 / 8
+5.75
+</code></pre>
+<p>Beyond the usual arithmetic operators, CoffeeScript provides some specific binary multiplicative operators for integer calculations, e.g. the standard mathematical <code>%%</code> <a href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operator</a> which is different from the default <code>%</code> modulo operator of the JavaScript language:</p>
+<table style="margin:auto">
+<tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+<tr><td style="text-align:center"><code> ** </code></td><td>exponentiation ( <em>power</em> )</td><td style="text-align:right"><code>2 ** 3</code></td><td><code>== 8</code></td></tr>
+<tr><td style="text-align:center"><code> // </code></td><td>integer part ( <em>floor</em> ) of division</td><td style="text-align:right"><code>22 // 7</code></td><td><code>== 3</code></td></tr>
+<tr><td style="text-align:center"><code> %% </code></td><td>remainder of <em>Euclidean</em> division &nbsp; &nbsp;</td><td style="text-align:right"><code>-5 %% 3</code></td><td><code>== 1</code></td></tr>
+<tr><td style="text-align:center"><code> % </code></td><td>JavaScript's modulo</td><td style="text-align:right"><code>-5 % 3</code></td><td><code>== -2</code></td></tr>
+</table>
+<p>Arithmetic operators can be applied to any number though, not just to integers.</p>
+<p><em>Chained comparison</em> is an impressive feature of the language: consecutive arithmetic relations of the same expression can be connected into one single expression. The logical value of the chained comparison is true if and only if each binary relation is true.</p>
+<pre><code>coffee&gt; 2 &gt;= 1 &gt; +0 == -0 &lt; 1 &lt;= 2 != 3
+true
+</code></pre>
+<h4>Trinity</h4>
+<p>In additive operations zero means nothing. However in multiplicative operations zero is one of the three mightiest numbers: by multiplying, zero transforms numbers into its own image. Ordinary arithmetic does not allow division by zero, but CoffeeScript does: the result is another supernumber called <code>Infinity</code>. Both zero and <code>Infinity</code> can have positive or negative sign.</p>
+<pre><code>coffee&gt; 1 / 0
+Infinity
+coffee&gt; 1 / -0
+-Infinity
+</code></pre>
+<p><code>Infinity</code> has even more power over numbers than zero has: additive operations with <code>Infinity</code> result <code>Infinity</code>. It is interesting though what gives zero or <code>Infinity</code> divided by themselves, or what is their product. Each of these operations result <code>NaN</code>, the most powerful number among all. If <code>NaN</code> is an operand of an arithmetic expression, then the result is always <code>NaN</code>.</p>
+<pre><code>coffee&gt; 0 / 0
+NaN
+coffee&gt; 0 * Infinity
+NaN
+</code></pre>
+<p>Take an operation, e.g. <em>division</em>. In order to show what does this operation result with different kind of numbers, collect the most interesting numbers into an array, and then apply the operation onto every pair of them.</p>
+<pre><code>coffee&gt; numbers = [ -1, 0, Infinity, NaN ]
+[ -1, 0, Infinity, NaN ]
+coffee&gt; for one in numbers then for another in numbers then one / another
+[ [ 1, -Infinity, -0, NaN ],
+  [ -0, NaN, 0, NaN ],
+  [ -Infinity, Infinity, NaN, NaN ],
+  [ NaN, NaN, NaN, NaN ] ]
+</code></pre>
+<p><code>Infinity</code> is greater than any other numbers, except <code>NaN</code>, but not because <code>NaN</code> would be the greater one. <code>NaN</code> is simply uncomparable to anything, <em>it is even not equal to itself</em> ! The other way to identify <code>NaN</code> value is the <code>isNaN</code> function.</p>
+<pre><code>coffee&gt; Infinity &gt; NaN
+false
+coffee&gt; Infinity &lt;= NaN
+false
+coffee&gt; NaN is NaN
+false
+coffee&gt; NaN isnt NaN
+true
+coffee&gt; isNaN( NaN )
+true
+</code></pre>
+<h2>From Type to Type</h2>
+<p>The name of <code>NaN</code> is the abbreviation of <em>Not-a-Number</em>, however <strong>it is a number</strong> according to its <em>type</em>. The type of expressions can be examined by <code>typeof</code> operator.</p>
+<pre><code>coffee&gt; typeof NaN
+'number'
+</code></pre>
+<p>The result of <code>typeof</code> is a string telling the name of the type.</p>
+<pre><code>coffee&gt; typeof typeof NaN
+'string'
+</code></pre>
+<h3>Primitive Types</h3>
+<p><em>Primitive</em> or <em>non-Object</em> types represent a definite set of values. The already mentioned Number type is one among them: a Number value is a primitive value corresponding to a double-precision 64-bit binary format IEEE 754-2008 value.</p>
+<p>The Undefined type has exactly one value called <code>undefined</code>. Any variable that has not been assigned a value has the value <code>undefined</code>.</p>
+<pre><code>coffee&gt; typeof anything
+'undefined'
+coffee&gt; typeof undefined
+'undefined'
+</code></pre>
+<p>The Boolean type represents a logical entity having two values, called <code>true</code> and <code>false</code>. Boolean values can also be referenced in CoffeeScript as <code>yes</code> and <code>no</code>, or <code>on</code> and <code>off</code>, respectively. CoffeeScript provides relational operators <code>is</code> and <code>isnt</code> for type-safe value comparison purposes.</p>
+<pre><code>coffee&gt; true is yes is on
+true
+coffee&gt; false is no is off
+true
+</code></pre>
+<p>Values of other types can be converted to Boolean by simply calling the Boolean function on them. The result of the conversion is <code>false</code> for arguments <code>undefined</code>, <code>null</code>, <code>false</code>, <code>+0</code>, <code>-0</code>, <code>NaN</code> or an empty string; otherwise it is <code>true</code>.</p>
+<pre><code>coffee&gt; Boolean('')
+false
+coffee&gt; Boolean(false)
+false
+coffee&gt; Boolean('false')
+true
+</code></pre>
+<p>The logical <code>and</code> operator returns <code>false</code> in case its first operand expression converts to Boolean <code>false</code>; otherwise the value of the second operand expression is returned. The logical <code>or</code> operator returns the value of its first operand expression if the first expression converts to Boolean <code>true</code>; otherwise the value of the second operand expression is returned.</p>
+<pre><code>coffee&gt; false and true
+false
+coffee&gt; 'false' and 'true'
+'true'
+coffee&gt; false or true
+true
+coffee&gt; 'false' or 'true'
+'false'
+</code></pre>
+<h4>Play with Strings</h4>
+<p>String type is is the set of all ordered sequences of zero or more 16-bit unsigned integer values treated as UTF-16 encoded text data. Each Unicode character has a position in the string, the first being at index 0, assuming the string is not empty. The length of a string is the number of its 16-bit character elements within it. The empty string has length zero and therefore contains no elements.</p>
+<p>Single-quoted strings are literal. Double-quoted strings allow expression interpolation using <code>#{ … }</code>.</p>
+<pre><code>coffee&gt; 'Literal string without #{ interpolation }'
+'Literal string without #{ interpolation }'
+coffee&gt; &quot;String with #{ Boolean( 1 + 1 ) } interpolation&quot;
+'String with true interpolation'
+</code></pre>
+<p>In case of multiline strings indentation is ignored, and lines are joined by a single space unless they end with a backslash. In order to type multiple line input, REPL provides two ways for line wrapping:</p>
+<ul>
+<li>
+<p>CTRL+V starts multi-line input mode. The evaluation of inputted lines happens
+by another CTRL+V, switching back to single-line mode.</p>
+<pre><code>------&gt; 'Beware
+.......         the
+.......             Jabberwock\
+.......             ,         \
+.......             my son!'
+'Beware the Jabberwock,         my son!'
+coffee&gt;
+</code></pre>
+</li>
+<li>
+<p><code>.editor</code> command activates editor mode, allowing free text edition.
+The evaluation of the input starts by CTRL+D, whilst CTRL+C interrupts editor
+mode without input evaluation.</p>
+<pre><code>coffee&gt; .editor
+// Entering editor mode (^D to finish, ^C to cancel)
+'Beware
+        the
+            Jabberwock\
+            ,         \
+            my son!'
+'Beware the Jabberwock,         my son!'
+coffee&gt;
+</code></pre>
+</li>
+</ul>
+<p>Triple-quoted block strings can be used to hold formatted or indentation-sensitive text, however the minimal indentation level is maintained throughout the string block.</p>
+<pre><code>------&gt; &quot;&quot;&quot;
+.......       The jaws
+.......    that bite,
+.......       the claws,
+.......    that catch!
+....... &quot;&quot;&quot;
+'   The jaws\nthat bite,\n   the claws,\nthat catch!'
+coffee&gt;
+</code></pre>
+<h3>Object types</h3>
+<p>An Object type is a collection of properties. Properties are identified and accessible using <em>key</em> values. A property key is either a unique Symbol ( <em>id</em> ), String ( <em>name</em> ) or natural Number ( <em>index</em> ). Instances of an Object type have their own property values for each of their properties.</p>
+<pre><code>coffee&gt; obj = new Object()
+{}
+coffee&gt; obj.SymbolKey = 'value of SymbolKey property'
+'value of SymbolKey property'
+coffee&gt; obj[&quot;String key&quot;] = 'value of &quot;String key&quot; property'
+'value of &quot;String key&quot; property'
+coffee&gt; obj[12345] = 'value of 12345 property'
+'value of 12345 property'
+coffee&gt; obj
+{ '12345': 'value of 12345 property',
+  SymbolKey: 'value of SymbolKey property',
+  'String key': 'value of &quot;String key&quot; property' }
+coffee&gt;
+</code></pre>
 <script src="folding.js"></script>
 </body>
 </html>
