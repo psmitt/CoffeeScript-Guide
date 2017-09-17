@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css?family=Averia+Libre" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet"/>
+<link href="Syntax.css" rel="stylesheet"/>
 <link href="text.css" rel="stylesheet"/>
 <link href="menu.css" rel="stylesheet"/>
 <link id ="theme" href="LightGrey.css" rel="stylesheet"/>
@@ -23,6 +24,7 @@
 <tr><td class="folding" onclick=setFolding('none')>no folding</td></tr>
 <tr><td class="folding" onclick=setFolding('flat')>flat folding</td></tr>
 <tr><td class="folding" onclick=setFolding('indent')>indent folding</td></tr>
+<tr><th style="border:none"></th></tr>
 </table>
 <span id="icon" title="Menu ON/OFF"
 onclick=toggle(this.previousSibling.previousSibling)>&#9776;</span>

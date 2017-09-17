@@ -47,6 +47,7 @@ h6 {
 
 pre, code, tt {
 	font-family: 'Anonymous pro', monospace;
+	font-size: 96%;
 }
 
 pre {
@@ -85,4 +86,18 @@ a {
 	width: 35px;
 	cursor: pointer;
 	text-indent: 0;
+	margin: 0;
+}
+
+table {
+  border-spacing: 22px 0;
+  margin: auto;
+}
+
+td.center {
+  text-align: center;
+}
+
+tr.bottom td {
+  border-bottom: thin solid black;
 }

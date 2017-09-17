@@ -2,13 +2,13 @@
 
 ## Short Introduction to Everything
 
-[CoffeeScript](http://coffeescript.org/v2) is a programming language that compiles to JavaScript. JavaScript is based on the ECMAScript Language Specification (  [ECMA-262](https://www.ecma-international.org/ecma-262) ). The execution model of ECMAScript is implemented in [Node.js](https://nodejs.org) JavaScript runtime system, built on Google Chrome's V8 JavaScript engine. [V8](https://developers.google.com/v8) compiles and executes JavaScript source code, handles memory allocation for objects, and garbage collects objects it no longer needs. V8 provides all the data types, operators, objects and functions specified in the ECMA-262 standard.
+[CoffeeScript](http://coffeescript.org/v2) is a programming language that compiles to JavaScript. JavaScript is based on the ECMAScript Language Specification ( [ECMA-262](https://www.ecma-international.org/ecma-262) ). The execution model of ECMAScript is implemented in [Node.js](https://nodejs.org) runtime system, built on Google Chrome's V8 JavaScript engine. [V8](https://developers.google.com/v8) compiles and executes JavaScript source code, handles memory allocation for objects, and garbage collects objects it no longer needs. V8 provides all the data types, operators, objects and functions specified in the ECMA-262 standard.
 
 Depending on the host environment CoffeeScript can be used as a domain-specific scripting language for web browsers, or as a general-purpose programming language for various software platforms. The host environment of objects and facilities completes the capabilities of the scripting language.
 
 This Guide follows the _learning by doing_ principle, using the methodology of exploratory programming for teaching the elements of CoffeeScript language while discovering the runtime environment. The domain exploration is made possible by an interactive language shell running a read-eval-print loop ( [REPL](https://nodejs.org/api/repl.html) ). REPL takes single user inputs, evaluates them, and returns the result to the user.
 
-## Let Us Have Coffee
+### Have a Coffee
 
 Install the current version of [Node.js](https://nodejs.org), then open a command line interface and install the newest version of CoffeeScript:
 
@@ -22,7 +22,7 @@ Enter the interactive CoffeeScript REPL by typing `coffee`. In order to exit REP
 
 ### Autocomplete
 
-Pressing TAB displays an available name in the current scope, starting with the already typed characters. In case of zero or multiple options no completion happens: pressing TAB for a second time will then display all of the autocomplete options.
+Pressing TAB displays an available name in the current scope starting with the already typed characters. In case of zero or multiple options no completion happens: pressing TAB for a second time will then display all of the autocomplete options.
 
 Enter REPL, type `.` and press TAB twice to see the available commands for controlling the REPL session. Continue typing with `h` and press TAB once to have `.help` displayed. Press ENTER to see the result of `.help` command.
 
@@ -48,86 +48,28 @@ The shortcut for `.break` is CTRL+C which can be pressed even if typing is not p
 
     os>
 
-## Do the Math
+### Input Modes
 
-An unsurprising capability of CoffeeScript is the support of calculations. Using the well-known [arithmetic](https://standards.ieee.org/findstds/standard/754-2008.html) operators in the formulas, the result is immediately displayed by pressing ENTER at the end of the line. The last result, represented by the underscore character, is always reusable in the subsequent calculation.
+REPL reads one or more input lines, evaluates the code, realizes side effects, and prints out the string representation of the value of the last expression in the input. Single-line input mode is the default: pressing ENTER makes the current line evaluated. Expressions within the line can be separated by semicolons.
 
-    coffee> -1 + 2 * 3 / 4
-    0.5
-    coffee> _ + 6 * 7 / 8
-    5.75
+    coffee> 11 ; 22 ;;; 33
+    33
 
-Beyond the usual arithmetic operators, CoffeeScript provides some specific binary multiplicative operators for integer calculations, e.g. the standard mathematical `%%` [modulo operator](https://en.wikipedia.org/wiki/Modulo_operation) which is different from the default `%` modulo operator of the JavaScript language:
+Multi-line input mode can be started by pressing CTRL+V. Then the prompt changes and pressing ENTER produces a simple line break. Similarly to semicolons, line breaks terminate expressions. Pressing CTRL+V again in the beginning of an empty line makes the previous lines evaluated and switches back to single-line input mode.
 
-<table style="margin:auto">
-<tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
-<tr><td style="text-align:center"><code> ** </code></td><td>exponentiation ( <em>power</em> )</td><td style="text-align:right"><code>2 ** 3</code></td><td><code>== 8</code></td></tr>
-<tr><td style="text-align:center"><code> // </code></td><td>integer part ( <em>floor</em> ) of division</td><td style="text-align:right"><code>22 // 7</code></td><td><code>== 3</code></td></tr>
-<tr><td style="text-align:center"><code> %% </code></td><td>remainder of <em>Euclidean</em> division &nbsp; &nbsp;</td><td style="text-align:right"><code>-5 %% 3</code></td><td><code>== 1</code></td></tr>
-<tr><td style="text-align:center"><code> % </code></td><td>JavaScript's modulo</td><td style="text-align:right"><code>-5 % 3</code></td><td><code>== -2</code></td></tr>
-</table>
+    ------> 11
+    ....... 22
+    ....... 33
+    33
+    coffee>
 
-Arithmetic operators can be applied to any number though, not just to integers.
+Another possibility to enter multiple lines is the editor mode of REPL activated by `.editor` command. The evaluation of the input happens on pressing CTRL+D, whilst CTRL+C interrupts editor mode without input evaluation.
 
-_Chained comparison_ is an impressive feature of the language: consecutive arithmetic relations of the same expression can be connected into one single expression. The logical value of the chained comparison is true if and only if each binary relation is true.
+## Literally Speaking
 
-    coffee> 2 >= 1 > +0 == -0 < 1 <= 2 != 3
-    true
+The evaluation of a valid input results either an object description or a _literal value_. Literal is the ultimate output format: REPL does not transform literal values, literal values are _invariant_ to the evaluation loop. The _type_ of literals defines the operations applicable on them. The type of expressions can be identified by the `typeof` operator. The result of the `typeof` operator is a string literal telling the name of the type.
 
-#### Trinity
-
-In additive operations zero means nothing. However in multiplicative operations zero is one of the three mightiest numbers: by multiplying, zero transforms numbers into its own image. Ordinary arithmetic does not allow division by zero, but CoffeeScript does: the result is another supernumber called `Infinity`. Both zero and `Infinity` can have positive or negative sign.
-
-    coffee> 1 / 0
-    Infinity
-    coffee> 1 / -0
-    -Infinity
-
-`Infinity` has even more power over numbers than zero has: additive operations with `Infinity` result `Infinity`. It is interesting though what gives zero or `Infinity` divided by themselves, or what is their product. Each of these operations result `NaN`, the most powerful number among all. If `NaN` is an operand of an arithmetic expression, then the result is always `NaN`.
-
-    coffee> 0 / 0
-    NaN
-    coffee> 0 * Infinity
-    NaN
-
-Take an operation, e.g. _division_. In order to show what does this operation result with different kind of numbers, collect the most interesting numbers into an array, and then apply the operation onto every pair of them.
-
-    coffee> numbers = [ -1, 0, Infinity, NaN ]
-    [ -1, 0, Infinity, NaN ]
-    coffee> for one in numbers then for another in numbers then one / another
-    [ [ 1, -Infinity, -0, NaN ],
-      [ -0, NaN, 0, NaN ],
-      [ -Infinity, Infinity, NaN, NaN ],
-      [ NaN, NaN, NaN, NaN ] ]
-
-`Infinity` is greater than any other numbers, except `NaN`, but not because `NaN` would be the greater one. `NaN` is simply uncomparable to anything, _it is even not equal to itself_ ! The other way to identify `NaN` value is the `isNaN` function.
-
-    coffee> Infinity > NaN
-    false
-    coffee> Infinity <= NaN
-    false
-    coffee> NaN is NaN
-    false
-    coffee> NaN isnt NaN
-    true
-    coffee> isNaN( NaN )
-    true
-
-## From Type to Type
-
-The name of `NaN` is the abbreviation of _Not-a-Number_, however __it is a number__ according to its _type_. The type of expressions can be examined by `typeof` operator.
-
-    coffee> typeof NaN
-    'number'
-
-The result of `typeof` is a string telling the name of the type.
-
-    coffee> typeof typeof NaN
-    'string'
-
-### Primitive Types
-
-_Primitive_ or _non-Object_ types represent a definite set of values. The already mentioned Number type is one among them: a Number value is a primitive value corresponding to a double-precision 64-bit binary format IEEE 754-2008 value.
+### Undefined
 
 The Undefined type has exactly one value called `undefined`. Any variable that has not been assigned a value has the value `undefined`.
 
@@ -136,20 +78,31 @@ The Undefined type has exactly one value called `undefined`. Any variable that h
     coffee> typeof undefined
     'undefined'
 
-The Boolean type represents a logical entity having two values, called `true` and `false`. Boolean values can also be referenced in CoffeeScript as `yes` and `no`, or `on` and `off`, respectively. CoffeeScript provides relational operators `is` and `isnt` for type-safe value comparison purposes.
+### Null
+
+The Null type has exactly one value, called `null`, that represents the intentional absence of any object value.
+
+    coffee> typeof null
+    'object'
+
+### Boolean
+
+The Boolean type has exactly two values, representing a logical entity. However each values has three different literal forms in CoffeeScript.
 
     coffee> true is yes is on
     true
     coffee> false is no is off
     true
+    coffee> typeof true
+    'boolean'
 
-Values of other types can be converted to Boolean by simply calling the Boolean function on them. The result of the conversion is `false` for arguments `undefined`, `null`, `false`, `+0`, `-0`, `NaN` or an empty string; otherwise it is `true`.
+Values of other types can be converted to Boolean by simply calling the `Boolean` function on them. The result of the conversion is `false` for arguments `undefined`, `null`, `false`, `+0`, `-0`, `NaN` or an empty string; otherwise it is `true`.
 
-    coffee> Boolean('')
+    coffee> Boolean ''
     false
-    coffee> Boolean(false)
+    coffee> Boolean false
     false
-    coffee> Boolean('false')
+    coffee> Boolean 'false'
     true
 
 The logical `and` operator returns `false` in case its first operand expression converts to Boolean `false`; otherwise the value of the second operand expression is returned. The logical `or` operator returns the value of its first operand expression if the first expression converts to Boolean `true`; otherwise the value of the second operand expression is returned.
@@ -163,41 +116,129 @@ The logical `and` operator returns `false` in case its first operand expression 
     coffee> 'false' or 'true'
     'false'
 
-#### Play with Strings
+### Number
 
-String type is is the set of all ordered sequences of zero or more 16-bit unsigned integer values treated as UTF-16 encoded text data. Each Unicode character has a position in the string, the first being at index 0, assuming the string is not empty. The length of a string is the number of its 16-bit character elements within it. The empty string has length zero and therefore contains no elements.
+The Number type is the set of literals corresponding to a double-precision 64-bit binary format [IEEE 754-2008](https://standards.ieee.org/findstds/standard/754-2008.html) value. The evaluation of mathematical and logical expressions follows a well-defined operator precedence and associativity.
 
-Single-quoted strings are literal. Double-quoted strings allow expression interpolation using `#{ … }`.
+Prefix, right-associative, unary mathematical and logical operators have the highest precedence.
+
+<table>
+<tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+<tr><td class="center"><code>+</code></td><td>conversion to number</td>
+    <td class="center"><code>+true</code></td><td class="center"><code>1</code></td></tr>
+<tr><td class="center"><code>-</code></td><td>mathematical negation</td>
+    <td class="center"><code>-0</code></td><td class="center"><code>-0</code></td></tr>
+<tr><td class="center"><code>~</code></td><td>bitwise complement</td>
+    <td class="center"><code>~0</code></td><td class="center"><code>-1</code></td></tr>
+<tr><td class="center"><code>!</code><br/><code>not</code></td><td>logical negation</td>
+    <td class="center"><code>!true<br/>not true</code></td><td class="center"><code>false<br/>false</code></td></tr>
+</table>
+
+The `**` exponentiation operator has the highest precedence among the binary matematical operators, and it is the only one being right-associative. 
+
+<table>
+<tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+<tr><td class="center"><code>**</code></td><td>exponentiation ( <em>power</em> )</td>
+    <td class="center"><code>2 ** 3</code></td><td class="center"><code>8</code></td></tr>
+</table>
+
+Multiplicative operators have the highest precedence among left-associative mathematical operators. Additive operators have higher precedence than bitwise shift operators. 
+
+<table>
+<tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+<tr><td class="center"><code>*</code></td><td>multiplication</td>
+    <td><code>7 * -3</code></td><td><code>-21</code></td></tr>
+<tr><td class="center"><code>/</code></td><td>division</td>
+    <td><code>7 / -3</code></td><td><code>-2.3333333333333335</code></td></tr>
+<tr><td class="center"><code>%</code></td><td>JavaScript's modulo</td>
+    <td><code>7 % -3</code></td><td><code>1</code></td></tr>
+<tr><td class="center"><code>//</code></td><td>integer part ( <em>floor</em> ) of division</td>
+    <td><code>7 // -3</code></td><td><code>-3</code></td></tr>
+<tr class="bottom"><td class="center"><code>%%</code></td><td>remainder of <em>Euclidean</em> division</td>
+    <td><code>7 %% -3</code></td><td><code>-2</code></td></tr>
+<tr><td class="center"><code>+</code></td><td>addition</td>
+    <td><code>7 + 3</code></td><td><code>10</code></td></tr>
+<tr class="bottom"><td class="center"><code>-</code></td><td>substraction</td>
+    <td><code>7 - 3</code></td><td><code>4</code></td></tr>
+<tr><td class="center"><code>&lt;&lt;</code></td><td>bitwise left shift</td>
+    <td><code>-100 &lt;&lt; 2</code></td><td><code>-400</code></td></tr>
+<tr><td class="center"><code>&gt;&gt;</code></td><td>bitwise right shift</td>
+    <td><code>-100 &gt;&gt; 2</code></td><td><code>-25</code></td></tr>
+<tr><td class="center"><code>&gt;&gt;&gt;</code></td><td>bitwise unsigned right shift</td>
+    <td><code>-100 &gt;&gt;&gt;&gt; 2</code></td><td><code>1073741799</code></td></tr>
+</table>
+
+Equality ( `==`, `is` ) and inequality ( `!=`, `isnt` ) operators in CoffeeScript are always _strict and type-safe_. Although they have lower precedence than other relational operators, _chained comparison_ abolishes the precedence rule: the logical value of the chained comparison is true if and only if each binary relation is true.
+
+    coffee> 2 >= 1 > +0 == -0 < 1 <= 2 != 3
+    true
+
+Each bitwise and logical operator has its own precedence in the following order.
+
+<table>
+<tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+<tr class="bottom"><td class="center"><code>&amp;</code></td><td>bitwise conjunction</td>
+    <td class="center"><code>51 &amp; 21</code></td><td class="center"><code>17</code></td></tr>
+<tr class="bottom"><td class="center"><code>|</code></td><td>bitwise disjunction</td>
+    <td class="center"><code>51 | 21</code></td><td class="center"><code>55</code></td></tr>
+<tr class="bottom"><td class="center"><code>^</code></td><td>bitwise exclusion</td>
+    <td class="center"><code>51 ^ 21</code></td><td class="center"><code>38</code></td></tr>
+<tr class="bottom"><td class="center"><code>and<br/>&amp;&amp;</code></td><td>logical conjunction</td>
+    <td class="center"><code>true and false</code></td><td class="center"><code>true</code></td></tr>
+<tr class="bottom"><td class="center"><code>or<br/>||</code></td><td>logical disjunction</td>
+    <td class="center"><code>true or false</code></td><td class="center"><code>false</code></td></tr>
+</table>
+
+#### Trinity
+
+In additive operations zero means nothing. However in multiplicative operations zero is one of the three mightiest numbers: by multiplying, zero transforms numbers into its own image. Ordinary arithmetic does not allow division by zero, but CoffeeScript does: the result is another supernumber called `Infinity`. Both zero and `Infinity` can have positive or negative sign.
+
+    coffee> 1 / 0
+    Infinity
+    coffee> 1 / -0
+    -Infinity
+
+`Infinity` has even more power over numbers than zero has: additive operations with `Infinity` result `Infinity`. It is interesting though what gives zero or `Infinity` divided by themselves, or what is their product. Each of these operations results `NaN`, the most powerful number among all. If `NaN` is an operand of an arithmetic expression, then the result is always `NaN`.
+
+    coffee> 0 / 0
+    NaN
+    coffee> 0 * Infinity
+    NaN
+    coffee> typeof NaN
+    'number'
+
+`Infinity` is greater than any other numbers, except `NaN`, but not because `NaN` would be the greater one. `NaN` is simply uncomparable to anything, _it is even not equal to itself_ ! The other way to identify `NaN` value is the `isNaN` function.
+
+    coffee> Infinity > NaN
+    false
+    coffee> Infinity <= NaN
+    false
+    coffee> NaN == NaN
+    false
+    coffee> NaN != NaN
+    true
+    coffee> isNaN NaN
+    true
+
+### String
+
+String type is is the set of all ordered sequences of zero or more 16-bit unsigned integer values treated as UTF-16 encoded text data. [Unicode](http://www.unicode.org) code points may also be represented by an [escape sequence](http://www.ecma-international.org/ecma-262/#sec-literals-string-literals). Each character has a position in the string, the first being at index 0, assuming the string is not empty. The length of a string is the number of its 16-bit character elements within it. The empty string has length zero and therefore contains no elements.
+
+Single-quoted strings are literal. <br/>
+Double-quoted strings allow expression interpolation using `#{…}`.
 
     coffee> 'Literal string without #{ interpolation }'
     'Literal string without #{ interpolation }'
     coffee> "String with #{ Boolean( 1 + 1 ) } interpolation"
     'String with true interpolation'
 
-In case of multiline strings indentation is ignored, and lines are joined by a single space unless they end with a backslash. In order to type multiple line input, REPL provides two ways for line wrapping:
-
-- CTRL+V starts multi-line input mode. The evaluation of inputted lines happens
-  by another CTRL+V, switching back to single-line mode.
+In case of multiline strings indentation is ignored, and lines are joined by a single space unless they end with a backslash.
 
       ------> 'Beware
       .......         the
       .......             Jabberwock\
       .......             ,         \
       .......             my son!'
-      'Beware the Jabberwock,         my son!'
-      coffee>
-
-- `.editor` command activates editor mode, allowing free text edition.
-  The evaluation of the input starts by CTRL+D, whilst CTRL+C interrupts editor
-  mode without input evaluation.
-
-      coffee> .editor
-      // Entering editor mode (^D to finish, ^C to cancel)
-      'Beware
-              the
-                  Jabberwock\
-                  ,         \
-                  my son!'
       'Beware the Jabberwock,         my son!'
       coffee>
 
@@ -212,20 +253,388 @@ Triple-quoted block strings can be used to hold formatted or indentation-sensiti
     '   The jaws\nthat bite,\n   the claws,\nthat catch!'
     coffee>
 
-### Object types
+Strings can be concatenated by `+` operator.
 
-An Object type is a collection of properties. Properties are identified and accessible using _key_ values. A property key is either a unique Symbol ( _id_ ), String ( _name_ ) or natural Number ( _index_ ). Instances of an Object type have their own property values for each of their properties.
+    coffee> 'Hello' + ' ' + 'World!'
+    'Hello World!'
+    coffee> typeof ''
+    'string'
 
-    coffee> obj = new Object()
+### Symbol
+
+The Symbol type is the set of all non-String values that may be used as the key of an Object property. Symbols do not have a literal syntax, the `Symbol` function is the only way to create them. `Symbol` is not a constructor function, no new objects can be created by that. `Symbol` can be given a string parameter which will be the key for the created Symbol; the default value for the key parameter is `'undefined'`.
+
+    coffee> Symbol()
+    Symbol()
+    coffee> Symbol('key')
+    Symbol(key)
+    coffee> typeof Symbol('key')
+    'symbol'
+ 
+Each possible Symbol value is unique and immutable. Even symbols having the same key are different. However symbols created by the `Symbol.for` function get registered and are accessible globally, and therefore all references to them are identical. Keys used to create global symbols can be retrieved by the `Symbol.keyFor` function. Symbols are protected from any implicit conversion, however they can be explicitly converted to string by the `String` function or by the `toString` method.
+
+    coffee> Symbol() is Symbol()
+    false
+    coffee> Symbol.for() is Symbol.for()
+    true
+    coffee> Symbol.keyFor Symbol 'key'
+    undefined
+    coffee> Symbol.keyFor Symbol.for()
+    'undefined'
+    coffee> Symbol.keyFor Symbol.for 'key'
+    'key'
+    coffee> String(Symbol()) is Symbol().toString()
+    true
+
+### Object
+
+An Object type is a collection of properties. Properties are identified and accessible using _key_ values. A property key is either a Symbol ( _id_ ), String ( _name_ ) or natural Number ( _index_ ). String and Number property keys can be listed by `Object.getOwnPropertyNames` function; Symbol property keys can be listed by `Object.getOwnPropertySymbols` function.
+
+    coffee> object = new Object
     {}
-    coffee> obj.SymbolKey = 'value of SymbolKey property'
-    'value of SymbolKey property'
-    coffee> obj["String key"] = 'value of "String key" property'
-    'value of "String key" property'
-    coffee> obj[12345] = 'value of 12345 property'
-    'value of 12345 property'
-    coffee> obj
-    { '12345': 'value of 12345 property',
-      SymbolKey: 'value of SymbolKey property',
-      'String key': 'value of "String key" property' }
-    coffee>
+    coffee> object[Symbol 'key'] = 'value of property having Symbol key'
+    'value of property having Symbol key'
+    coffee> object[String 'key'] = 'value of property having String key'
+    'value of property having String key'
+    coffee> object[Number 'key'] = 'value of property having Number key'
+    'value of property having Number key'
+    coffee> object
+    { key: 'value of property having String key',
+      NaN: 'value of property having Number key',
+      [Symbol(key)]: 'value of property having Symbol key' }
+    coffee>Object.getOwnPropertyNames object
+    [ 'key', 'NaN' ]
+    coffee>Object.getOwnPropertySymbols object
+    [ Symbol(key) ]
+
+Objects have literal representation, where properties are listed in braces, separated by commas and/or line breaks. Each listed property is identified by its key and value, separated by a colon.
+
+### Array
+
+An Array objects is a collection of values, identified and accessible via natural number indexes. The literal representation of arrays is the list of values in brackets, separated by commas and/or line breaks.
+
+    coffee> array = new Array
+    []
+    coffee> array[1] = 'one' ; array[2] = 'two' ; array[5] = 'five'
+    'five'
+    coffee> array.length
+    6
+    coffee> array
+    [ <1 empty item>, 'one', 'two', <2 empty items>, 'five' ]
+    coffee> array.sort()
+    [ 'five', 'one', 'two', <3 empty items> ]
+
+### Regular Expression
+
+A RegExp object contains a text pattern used to match character combinations in strings. Based on the matches strings can be validated, modified or splitted. The literal format of a [regular expression](http://www.regular-expressions.info) is the search pattern specified between slashes. Searching options (flags) may be specified after the closing slash.
+
+    coffee> re = new RegExp
+    /(?:)/
+    coffee> re.test 'anything'
+    true
+
+### Literal JavaScript
+
+Literal JavaScript code can be embedded into CoffeeScript between backticks.
+
+    coffee> say = `function (something) { return something }`
+    [Function: say]
+    coffee> typeof say
+    'function'
+    coffee> say 'Hello!'
+    'Hello!'
+
+## Objects All Around
+
+Exit and enter REPL for a fresh start. REPL's lexical environment is a _global environment_, prepopulated with identifier bindings, and includes an associated _global object_ whose properties provide some of the global environment's identifier bindings.
+
+Use the autocomplete function of REPL to discover existing entities. List all available identifiers in the current namespace by a double TAB in an empty line. Get the same list by pressing TAB twice after `global.` or `this.`, printing the properties of the global object. The global object inherits some properties from `Object`, the rests are its own properties. Display the inherited properties by a double TAB after `Object.prototype.`, then list the global object's own properties by calling `Object.getOwnPropertyNames global`.
+
+Obsolete references to the global objects could still exist in the global environment for compatibility purposes.
+
+    coffee> this is global is GLOBAL is root
+    true
+    [DEP0016] DeprecationWarning: 'GLOBAL' is deprecated, use 'global'
+    [DEP0016] DeprecationWarning: 'root' is deprecated, use 'global'
+
+### Origin
+
+The `Object` constructor function is the initial value of the `Object` property of the global object. When called as a constructor it creates a new ordinary object. When `Object` is called as a function rather than as a constructor, it performs a type conversion.
+
+    coffee> typeof Object
+    'function'
+    coffee> typeof new Object
+    'object'
+    coffee> typeof Object()
+    'object'
+
+The real immutable primary intrinsic object of the CoffeeScript Universe is the `Object.prototype`. Use double TAB to see its properties.
+
+    coffee> Object.prototype.
+    Object.prototype.__defineGetter__      Object.prototype.__defineSetter__
+    Object.prototype.__lookupGetter__      Object.prototype.__lookupSetter__
+    Object.prototype.__proto__             Object.prototype.constructor
+    Object.prototype.hasOwnProperty        Object.prototype.isPrototypeOf
+    Object.prototype.propertyIsEnumerable  Object.prototype.toLocaleString
+    Object.prototype.toString              Object.prototype.valueOf
+
+When `Object` function is called with a boolean, number, or string literal value, it results a _wrapper object_ of the argument. `Boolean`, `Number`, and `String` wrapper objects are own properties of the global object, providing useful transformation and validation methods. Examine the own properties of the wrapper object by `Object.getOwnPropertyNames` function.
+
+
+
+### Creation
+
+Assigmnents
+- variables
+- objects
+- arrays
+  - Destructuring assignments
+  - ranges
+
+### Existence
+
+?
+?=
+?.
+?:
+
+### 
+
+
+
+### The `Object` and its `prototype`
+
+
+
+
+
+
+
+? a változóknál
+++ és -- a változóknál
+
+Az információ rendezett megjelenítéséhez az Array.prototype.sort metódusát használjuk.
+------------------------------------------------------------------------------------------------
+> typeof
+
+
+Az interaktív felület indítása után (coffee vagy node), dupla TAB leütéssel megjelennek
+a közvetlenül elérhetõ és értelmezett nyelvi elemek. Ezek a következõk:
+
+
+
+1. A beépített JavaScript objektumok
+====================================
+# ld. pl. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+
+  Global Properties: (not objects)
+  ------------------
+    undefined
+    null
+    NaN
+    Infinity
+
+  Global Functions:
+  -----------------
+    eval
+    uneval                                # non standard
+    isFinite
+    isNAN
+    parseFloat
+    parseInt
+    decodeURI
+    decodeURIComponent
+    encodeURI
+    encodeURIComponent
+    escape                                # deprecated
+    unescape                              # deprecated
+
+  Fundamental Objects (a.k.a. Data Types):
+  ----------------------------------------
+    Object
+    Function
+    Boolean
+    Symbol
+
+    Number
+    Math
+    Date
+
+    String
+    RegExp
+
+  Indexed Collections:
+  --------------------
+    Array
+    Float32Array
+    Float64Array
+    Int16Array
+    Int32Array
+    Int8Array
+    Uint16Array
+    Uint32Array
+    Uint8Array
+    Uint8ClampedArray
+
+  Keyed Collections:
+  ------------------
+    Map
+    Set
+    WeakMap
+    WeakSet
+
+  Structured Data:
+  ----------------
+    ArrayBuffer
+    DataView
+    JSON
+
+  Control Abstraction Objects:
+  ----------------------------
+    Generator                           # non standard
+    Promise
+    Proxy
+    Reflect
+
+  Error Objects:
+  --------------
+    Error
+    EvalError
+    InternalError                       # non standard
+    RangeError
+    ReferenceError
+    SyntaxError
+    TypeError
+    URIError
+
+  Other Namespaces
+  ----------------
+    Intl                                # internationalization API
+    WebAssembly
+
+> Object.getOwnPropertyDescriptors(Object.prototype)
+  - Configurable # can be deleted or changed
+  - Enumerable   # can be returned in a for/in loop
+  - Writable     # can be changed
+
+3. A global objektum, VAGYIS a global SCOPE
+===========================================
+
+> Object.keys(global).sort()
+[ 'Buffer',                               # Uint8Array, not in browser
+  'COUNTER_HTTP_CLIENT_REQUEST',
+  'COUNTER_HTTP_CLIENT_RESPONSE',
+  'COUNTER_HTTP_SERVER_REQUEST',
+  'COUNTER_HTTP_SERVER_RESPONSE',
+  'COUNTER_NET_SERVER_CONNECTION',
+  'COUNTER_NET_SERVER_CONNECTION_CLOSE',
+  'DTRACE_HTTP_CLIENT_REQUEST',
+  'DTRACE_HTTP_CLIENT_RESPONSE',
+  'DTRACE_HTTP_SERVER_REQUEST',
+  'DTRACE_HTTP_SERVER_RESPONSE',
+  'DTRACE_NET_SERVER_CONNECTION',
+  'DTRACE_NET_STREAM_END',
+  'clearImmediate',
+  'clearInterval',
+  'clearTimeout',
+  'console',
+  'exports',                              # module scope, not global;
+  'global',                               # Circular
+  'module',                               # module scope, not global; not in browser
+  'process',                              # MAIN NODE OBJECT; not in browser
+  'require',                              # module scope, not global; not in browser
+  'setImmediate',
+  'setInterval',
+  'setTimeout' ]
+
+> GLOBAL is global
+> root is global
+> this is global
+
+4. A NODE CORE API MODULOK:
+===========================
+
+> repl._builtinLibs
+[ 'assert',
+  'async_hooks',
+  'buffer',
+  'child_process',
+  'cluster',
+  'crypto',
+  'dgram',
+  'dns',
+  'domain',
+  'events',
+  'fs',
+  'http',
+  'https',
+  'net',
+  'os',
+  'path',
+  'punycode',
+  'querystring',
+  'readline',
+  'repl',
+  'stream',
+  'string_decoder',
+  'tls',
+  'tty',
+  'url',
+  'util',
+  'v8',
+  'vm',
+  'zlib' ]
+
+Keywords
+========
+  by
+  catch
+  class
+  do    // immediately invokes a passed function, forwarding any arguments
+  else
+  false // = not true
+  for
+  for own
+  from
+  function // nem használjuk, csak fenntartott a JS miatt
+  if
+  in // object or array values
+  is // ===
+  loop  // = while true
+  not
+  null
+  of // object properties or array indexes
+  off // = not true
+  on // = true
+  return // csak önmagában, és olyankor a jelentése return undefined
+  switch
+  true
+  try
+  undefined // nem használjuk, csak fenntartott a JS miatt
+  unless // = if not
+  until // = while not
+  var // nem használjuk, csak fenntartott a JS miatt
+  while
+  when
+
+- You don’t need to use semicolons ; to terminate expressions, ending the line will do just as well (although semicolons can still be used to fit multiple expressions onto a single line).
+
+- Instead of using curly braces { } to surround blocks of code in functions, if-statements, switch, and try/catch, use indentation.
+
+- Functions are defined by an optional list of parameters in parentheses, an arrow, and the function body. The empty function looks like this: ->
+
+- Functions may also have default values for arguments, which will be used if the incoming argument is missing (undefined).
+
+- Objects may be created using indentation instead of explicit braces.
+
+- When each property is listed on its own line, the commas are optional.
+
+- comments are denoted by the # character to the end of a line, or from ### to the next appearance of ###.
+
+- if/else statements can be written without the use of parentheses and curly brackets.
+
+- As with functions and other block expressions, multi-line conditionals are delimited by indentation.
+
+- There’s also a handy postfix form, with the if or unless at the end.
+
+- There is no explicit ternary statement in CoffeeScript — you simply use a regular if statement on a single line.
