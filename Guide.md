@@ -131,7 +131,8 @@ Prefix, right-associative, unary mathematical and logical operators have the hig
 <tr><td class="center"><code>~</code></td><td>bitwise complement</td>
     <td class="center"><code>~0</code></td><td class="center"><code>-1</code></td></tr>
 <tr><td class="center"><code>!</code><br/><code>not</code></td><td>logical negation</td>
-    <td class="center"><code>!true<br/>not true</code></td><td class="center"><code>false<br/>false</code></td></tr>
+    <td class="center"><code>!true</code><br/><code>not true</code>
+    </td><td class="center"><code>false</code><br/><code>false</code></td></tr>
 </table>
 
 The `**` exponentiation operator has the highest precedence among the binary matematical operators, and it is the only one being right-associative. 
@@ -183,9 +184,9 @@ Each bitwise and logical operator has its own precedence in the following order.
     <td class="center"><code>51 | 21</code></td><td class="center"><code>55</code></td></tr>
 <tr class="bottom"><td class="center"><code>^</code></td><td>bitwise exclusion</td>
     <td class="center"><code>51 ^ 21</code></td><td class="center"><code>38</code></td></tr>
-<tr class="bottom"><td class="center"><code>and<br/>&amp;&amp;</code></td><td>logical conjunction</td>
+<tr class="bottom"><td class="center"><code>and</code><br/><code>&amp;&amp;</code></td><td>logical conjunction</td>
     <td class="center"><code>true and false</code></td><td class="center"><code>true</code></td></tr>
-<tr class="bottom"><td class="center"><code>or<br/>||</code></td><td>logical disjunction</td>
+<tr class="bottom"><td class="center"><code>or</code><br/><code>||</code></td><td>logical disjunction</td>
     <td class="center"><code>true or false</code></td><td class="center"><code>false</code></td></tr>
 </table>
 
