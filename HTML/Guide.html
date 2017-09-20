@@ -128,7 +128,7 @@ true
 coffee&gt; 'false' or 'true'
 'false'
 </code></pre>
-<h3>Number</h3>
+<h3>Numbers</h3>
 <p>The <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Number">Number</a> type is the set of literals corresponding to a double-precision 64-bit binary format <a href="https://standards.ieee.org/findstds/standard/754-2008.html">IEEE 754-2008</a> value. The evaluation of mathematical and logical expressions follows a well-defined operator precedence and associativity. Precedence rules can be overridden by <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Parenthetical">explicit parentheses</a>.</p>
 <p>Prefix, right-associative, <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Unary">unary</a> mathematical and logical operators have the highest precedence.</p>
 <table>
@@ -218,7 +218,7 @@ true
 coffee&gt; isNaN NaN
 true
 </code></pre>
-<h3>String</h3>
+<h3>Strings</h3>
 <p><a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#String">String</a> type is is the set of all ordered sequences of zero or more 16-bit unsigned integer values treated as UTF-16 encoded text data. <a href="http://www.unicode.org">Unicode</a> code points may also be represented by an <a href="http://www.ecma-international.org/ecma-262/#sec-literals-string-literals">escape sequence</a>. Each character has a position in the string, the first being at index 0, assuming the string is not empty. The length of a string is the number of its 16-bit character elements within it. The empty string has length zero and therefore contains no elements.</p>
 <p>Single-quoted strings are literal. <br/>
 Double-quoted strings allow expression interpolation using <code>#{…}</code>.</p>
@@ -252,7 +252,7 @@ coffee&gt;
 coffee&gt; typeof ''
 'string'
 </code></pre>
-<h3>Symbol</h3>
+<h3>Symbols</h3>
 <p>The Symbol type is the set of all non-String values that may be used as the key of an Object property. Symbols do not have a literal syntax, the <code>Symbol</code> function is the only way to create them. <code>Symbol</code> is not a constructor function, no new objects can be created by that. <code>Symbol</code> can be given a string parameter which will be the key for the created Symbol; the default value for the key parameter is <code>'undefined'</code>.</p>
 <pre><code>coffee&gt; Symbol()
 Symbol()
@@ -275,55 +275,64 @@ coffee&gt; Symbol.keyFor Symbol.for 'key'
 coffee&gt; String(Symbol()) is Symbol().toString()
 true
 </code></pre>
-<h3>Object</h3>
-<p>An Object type is a collection of properties. Properties are identified and accessible using <em>key</em> values. A property key is either a Symbol ( <em>id</em> ), String ( <em>name</em> ) or natural Number ( <em>index</em> ). String and Number property keys can be listed by <code>Object.getOwnPropertyNames</code> function; Symbol property keys can be listed by <code>Object.getOwnPropertySymbols</code> function.</p>
-<pre><code>coffee&gt; object = new Object
-{}
-coffee&gt; object[Symbol 'key'] = 'value of property having Symbol key'
-'value of property having Symbol key'
-coffee&gt; object[String 'key'] = 'value of property having String key'
-'value of property having String key'
-coffee&gt; object[Number 'key'] = 'value of property having Number key'
-'value of property having Number key'
-coffee&gt; object
-{ key: 'value of property having String key',
-  NaN: 'value of property having Number key',
-  [Symbol(key)]: 'value of property having Symbol key' }
-coffee&gt;Object.getOwnPropertyNames object
-[ 'key', 'NaN' ]
-coffee&gt;Object.getOwnPropertySymbols object
-[ Symbol(key) ]
+<h3>Objects</h3>
+<p>An <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Object">Object</a> type is a collection of properties. Properties are identified and accessible using <em>key</em> values. A property key is either a Symbol ( <em>id</em> ), String ( <em>name</em> ) or natural Number ( <em>index</em> ).</p>
+<p>An object literal is a list of name-value pairs wrapped in curly braces. Properties can be separated by commas, semicolons, and/or line breaks; keys and values must be separated by a colon. Object literals encapsulate data, creating a separate namespace for the properties. CoffeeScript does not allow Symbol keys in object literals; object properties with Symbol keys must be assigned separately.</p>
+<p>Each object is a unique entity; object instances differ even when they have the same properties with the same values.</p>
+<pre><code>------&gt; {
+.......  key : 'value of named property'
+.......  123 : 'value of indexed property'
+....... }
+{ '123': 'value of indexed property',
+  key: 'value of named property' }
+coffee&gt; typeof {}
+'object'
+coffee&gt; {} is {}
+false
 </code></pre>
-<p>Objects have literal representation, where properties are listed in braces, separated by commas and/or line breaks. Each listed property is identified by its key and value, separated by a colon.</p>
-<h3>Array</h3>
-<p>An Array objects is a collection of values, identified and accessible via natural number indexes. The literal representation of arrays is the list of values in brackets, separated by commas and/or line breaks.</p>
-<pre><code>coffee&gt; array = new Array
-[]
-coffee&gt; array[1] = 'one' ; array[2] = 'two' ; array[5] = 'five'
-'five'
-coffee&gt; array.length
-6
-coffee&gt; array
-[ &lt;1 empty item&gt;, 'one', 'two', &lt;2 empty items&gt;, 'five' ]
-coffee&gt; array.sort()
-[ 'five', 'one', 'two', &lt;3 empty items&gt; ]
+<h3>Arrays</h3>
+<p>An <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Array">Array</a> object is a collection of values, identified and accessible via natural number indexes. The literal representation of arrays is the list of values in brackets, separated by commas, semicolons, and/or line breaks.</p>
+<pre><code>coffee&gt; [ undefined; null; false; 0; ''; NaN ]
+[ undefined, null, false, 0, '', NaN ]
+coffee&gt; typeof []
+'object'
 </code></pre>
-<h3>Regular Expression</h3>
-<p>A RegExp object contains a text pattern used to match character combinations in strings. Based on the matches strings can be validated, modified or splitted. The literal format of a <a href="http://www.regular-expressions.info">regular expression</a> is the search pattern specified between slashes. Searching options (flags) may be specified after the closing slash.</p>
-<pre><code>coffee&gt; re = new RegExp
-/(?:)/
-coffee&gt; re.test 'anything'
+<h4>Ranges</h4>
+<p>A <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Range">range</a> is an array object of an increasing or decreasing sequence of numbers, where the difference between the consecutive elements is 1. The literal representation of a range is the range limits in brackets with two or three dots in between them.</p>
+<p>The first element of the range is the value of the first expression in the brackets. The limit of the range is the value of the second expression. The sequence is increasing if the first element is less than the limit, otherwise it is decreasing. The sequence stops at the range limit. In case of two dots the limit is included in the range, if the limit is an element of the sequence. Otherwise the limit is excluded from the range.</p>
+<pre><code>coffee&gt; [1..5]
+[ 1, 2, 3, 4, 5 ]
+coffee&gt; [2...-3]
+[ 2, 1, 0, -1, -2 ]
+coffee&gt; [3/2..5]
+[ 1.5, 2.5, 3.5, 4.5 ]
+coffee&gt; [1..5] instanceof Array
 true
+</code></pre>
+<h3>Regular Expressions</h3>
+<p>A <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#RegExp">RegExp</a> object contains a text pattern used to match character combinations in strings. Based on the matches strings can be validated, modified or splitted. The literal format of a <a href="http://www.regular-expressions.info">regular expression</a> is the search pattern specified between slashes. Searching options (flags) may be specified after the closing slash.</p>
+<pre><code>coffee&gt; typeof /^(?!.*(.).*\1)[imguy]*$/
+'object'
+coffee&gt; /^(?!.*(.).*\1)[imguy]*$/ instanceof RegExp
+true
+coffee&gt; new RegExp
+/(?:)/
 </code></pre>
 <h3>Literal JavaScript</h3>
 <p>Literal JavaScript code can be embedded into CoffeeScript between backticks.</p>
-<pre><code>coffee&gt; say = `function (something) { return something }`
+<pre><code>coffee&gt; `{[Symbol('foo')]: 'foo'}`
+{ [Symbol(foo)]: 'foo' }
+coffee&gt; `function say(something) { return something }`
 [Function: say]
 coffee&gt; typeof say
 'function'
 coffee&gt; say 'Hello!'
 'Hello!'
 </code></pre>
+<h2>Functions</h2>
+<h3>Assignment</h3>
+<h4>Objects with Symbol keys</h4>
+<p>http://2ality.com/2014/12/es6-symbols.html</p>
 <h2>Objects All Around</h2>
 <p>Exit and enter REPL for a fresh start. REPL's lexical environment is a <em>global environment</em>, prepopulated with identifier bindings, and includes an associated <em>global object</em> whose properties provide some of the global environment's identifier bindings.</p>
 <p>Use the autocomplete function of REPL to discover existing entities. List all available identifiers in the current namespace by a double TAB in an empty line. Get the same list by pressing TAB twice after <code>global.</code> or <code>this.</code>, printing the properties of the global object. The global object inherits some properties from <code>Object</code>, the rests are its own properties. Display the inherited properties by a double TAB after <code>Object.prototype.</code>, then list the global object's own properties by calling <code>Object.getOwnPropertyNames global</code>.</p>

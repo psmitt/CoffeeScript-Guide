@@ -125,7 +125,7 @@ The [logical AND](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeSc
     coffee> 'false' or 'true'
     'false'
 
-### Number
+### Numbers
 
 The [Number](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Number) type is the set of literals corresponding to a double-precision 64-bit binary format [IEEE 754-2008](https://standards.ieee.org/findstds/standard/754-2008.html) value. The evaluation of mathematical and logical expressions follows a well-defined operator precedence and associativity. Precedence rules can be overridden by [explicit parentheses](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Parenthetical).
 
@@ -230,7 +230,7 @@ In additive operations zero means nothing. However in multiplicative operations 
     coffee> isNaN NaN
     true
 
-### String
+### Strings
 
 [String](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#String) type is is the set of all ordered sequences of zero or more 16-bit unsigned integer values treated as UTF-16 encoded text data. [Unicode](http://www.unicode.org) code points may also be represented by an [escape sequence](http://www.ecma-international.org/ecma-262/#sec-literals-string-literals). Each character has a position in the string, the first being at index 0, assuming the string is not empty. The length of a string is the number of its 16-bit character elements within it. The empty string has length zero and therefore contains no elements.
 
@@ -270,7 +270,7 @@ Strings can be concatenated by `+` operator.
     coffee> typeof ''
     'string'
 
-### Symbol
+### Symbols
 
 The Symbol type is the set of all non-String values that may be used as the key of an Object property. Symbols do not have a literal syntax, the `Symbol` function is the only way to create them. `Symbol` is not a constructor function, no new objects can be created by that. `Symbol` can be given a string parameter which will be the key for the created Symbol; the default value for the key parameter is `'undefined'`.
 
@@ -296,63 +296,82 @@ Each possible Symbol value is unique and immutable. Even symbols having the same
     coffee> String(Symbol()) is Symbol().toString()
     true
 
-### Object
+### Objects
 
-An Object type is a collection of properties. Properties are identified and accessible using _key_ values. A property key is either a Symbol ( _id_ ), String ( _name_ ) or natural Number ( _index_ ). String and Number property keys can be listed by `Object.getOwnPropertyNames` function; Symbol property keys can be listed by `Object.getOwnPropertySymbols` function.
+An [Object](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Object) type is a collection of properties. Properties are identified and accessible using _key_ values. A property key is either a Symbol ( _id_ ), String ( _name_ ) or natural Number ( _index_ ).
 
-    coffee> object = new Object
-    {}
-    coffee> object[Symbol 'key'] = 'value of property having Symbol key'
-    'value of property having Symbol key'
-    coffee> object[String 'key'] = 'value of property having String key'
-    'value of property having String key'
-    coffee> object[Number 'key'] = 'value of property having Number key'
-    'value of property having Number key'
-    coffee> object
-    { key: 'value of property having String key',
-      NaN: 'value of property having Number key',
-      [Symbol(key)]: 'value of property having Symbol key' }
-    coffee>Object.getOwnPropertyNames object
-    [ 'key', 'NaN' ]
-    coffee>Object.getOwnPropertySymbols object
-    [ Symbol(key) ]
+An object literal is a list of name-value pairs wrapped in curly braces. Properties can be separated by commas, semicolons, and/or line breaks; keys and values must be separated by a colon. Object literals encapsulate data, creating a separate namespace for the properties. CoffeeScript does not allow Symbol keys in object literals; object properties with Symbol keys must be assigned separately.
 
-Objects have literal representation, where properties are listed in braces, separated by commas and/or line breaks. Each listed property is identified by its key and value, separated by a colon.
+Each object is a unique entity; object instances differ even when they have the same properties with the same values.
 
-### Array
+    ------> {
+    .......  key : 'value of named property'
+    .......  123 : 'value of indexed property'
+    ....... }
+    { '123': 'value of indexed property',
+      key: 'value of named property' }
+    coffee> typeof {}
+    'object'
+    coffee> {} is {}
+    false
 
-An Array objects is a collection of values, identified and accessible via natural number indexes. The literal representation of arrays is the list of values in brackets, separated by commas and/or line breaks.
+### Arrays
 
-    coffee> array = new Array
-    []
-    coffee> array[1] = 'one' ; array[2] = 'two' ; array[5] = 'five'
-    'five'
-    coffee> array.length
-    6
-    coffee> array
-    [ <1 empty item>, 'one', 'two', <2 empty items>, 'five' ]
-    coffee> array.sort()
-    [ 'five', 'one', 'two', <3 empty items> ]
+An [Array](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Array) object is a collection of values, identified and accessible via natural number indexes. The literal representation of arrays is the list of values in brackets, separated by commas, semicolons, and/or line breaks.
 
-### Regular Expression
+    coffee> [ undefined; null; false; 0; ''; NaN ]
+    [ undefined, null, false, 0, '', NaN ]
+    coffee> typeof []
+    'object'
 
-A RegExp object contains a text pattern used to match character combinations in strings. Based on the matches strings can be validated, modified or splitted. The literal format of a [regular expression](http://www.regular-expressions.info) is the search pattern specified between slashes. Searching options (flags) may be specified after the closing slash.
+#### Ranges
 
-    coffee> re = new RegExp
-    /(?:)/
-    coffee> re.test 'anything'
+A [range](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Range) is an array object of an increasing or decreasing sequence of numbers, where the difference between the consecutive elements is 1. The literal representation of a range is the range limits in brackets with two or three dots in between them.
+
+The first element of the range is the value of the first expression in the brackets. The limit of the range is the value of the second expression. The sequence is increasing if the first element is less than the limit, otherwise it is decreasing. The sequence stops at the range limit. In case of two dots the limit is included in the range, if the limit is an element of the sequence. Otherwise the limit is excluded from the range.
+
+    coffee> [1..5]
+    [ 1, 2, 3, 4, 5 ]
+    coffee> [2...-3]
+    [ 2, 1, 0, -1, -2 ]
+    coffee> [3/2..5]
+    [ 1.5, 2.5, 3.5, 4.5 ]
+    coffee> [1..5] instanceof Array
     true
+
+### Regular Expressions
+
+A [RegExp](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#RegExp) object contains a text pattern used to match character combinations in strings. Based on the matches strings can be validated, modified or splitted. The literal format of a [regular expression](http://www.regular-expressions.info) is the search pattern specified between slashes. Searching options (flags) may be specified after the closing slash.
+
+    coffee> typeof /^(?!.*(.).*\1)[imguy]*$/
+    'object'
+    coffee> /^(?!.*(.).*\1)[imguy]*$/ instanceof RegExp
+    true
+    coffee> new RegExp
+    /(?:)/
 
 ### Literal JavaScript
 
 Literal JavaScript code can be embedded into CoffeeScript between backticks.
 
-    coffee> say = `function (something) { return something }`
+    coffee> `{[Symbol('foo')]: 'foo'}`
+    { [Symbol(foo)]: 'foo' }
+    coffee> `function say(something) { return something }`
     [Function: say]
     coffee> typeof say
     'function'
     coffee> say 'Hello!'
     'Hello!'
+
+## Functions
+
+
+
+### Assignment
+
+#### Objects with Symbol keys
+
+http://2ality.com/2014/12/es6-symbols.html
 
 ## Objects All Around
 
