@@ -2,17 +2,17 @@
 
 ## Short Introduction to Everything
 
-[CoffeeScript](http://coffeescript.org/v2) is a programming language that compiles to JavaScript. JavaScript is based on the ECMAScript Language Specification ( [ECMA-262](https://www.ecma-international.org/ecma-262) ). The execution model of ECMAScript is implemented in [Node.js](https://nodejs.org) runtime system, built on Google Chrome's V8 JavaScript engine. [V8](https://developers.google.com/v8) compiles and executes JavaScript source code, handles memory allocation for objects, and garbage collects objects it no longer needs. V8 provides all the data types, operators, objects and functions specified in the ECMA-262 standard.
+[CoffeeScript](http://coffeescript.org) is a programming language that compiles to JavaScript. JavaScript is based on the ECMAScript Language Specification ( [ECMA-262](https://www.ecma-international.org/ecma-262) ). The execution model of ECMAScript is implemented in [Node.js](https://nodejs.org) runtime system, built on Google Chrome's V8 JavaScript engine. [V8](https://developers.google.com/v8) compiles and executes JavaScript source code, handles memory allocation for objects, and garbage collects objects it no longer needs. V8 provides all the data types, operators, objects and functions specified in the ECMA-262 standard.
 
 Depending on the host environment CoffeeScript can be used as a domain-specific scripting language for web browsers, or as a general-purpose programming language for various software platforms. The host environment of objects and facilities completes the capabilities of the scripting language.
 
-This Guide follows the _learning by doing_ principle, using the methodology of exploratory programming for teaching the elements of CoffeeScript language while discovering the runtime environment. The domain exploration is made possible by an interactive language shell running a read-eval-print loop ( [REPL](https://nodejs.org/api/repl.html) ). REPL takes single user inputs, evaluates them, and returns the result to the user.
+This Guide follows the _learning by doing_ principle, using the methodology of exploratory programming for teaching the [elements of CoffeeScript language](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml) while discovering the runtime environment. The domain exploration is made possible by an interactive language shell running a read-eval-print loop ( [REPL](https://nodejs.org/api/repl.html) ). REPL takes single user inputs, evaluates them, and returns the result to the user.
 
 ### Have a Coffee
 
 Install the current version of [Node.js](https://nodejs.org), then open a command line interface and install the newest version of CoffeeScript:
 
-    os> npm install -g coffeescript@next
+    os> npm install -g coffeescript
 
 Enter the interactive CoffeeScript REPL by typing `coffee`. In order to exit REPL type `.exit`.
 
@@ -55,7 +55,7 @@ REPL reads one or more input lines, evaluates the code, realizes side effects, a
     coffee> 11 ; 22 ;;; 33
     33
 
-Multi-line input mode can be started by pressing CTRL+V. Then the prompt changes and pressing ENTER produces a simple line break. Similarly to semicolons, line breaks terminate expressions. Pressing CTRL+V again in the beginning of an empty line makes the previous lines evaluated and switches back to single-line input mode.
+Multi-line input mode can be started by pressing CTRL+V. Then the prompt changes and pressing ENTER produces a simple line break. Similarly to semicolons, line breaks [terminate](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#T) expressions. Pressing CTRL+V again in the beginning of an empty line makes the previous lines evaluated and switches back to single-line input mode.
 
     ------> 11
     ....... 22
@@ -65,9 +65,18 @@ Multi-line input mode can be started by pressing CTRL+V. Then the prompt changes
 
 Another possibility to enter multiple lines is the editor mode of REPL activated by `.editor` command. The evaluation of the input happens on pressing CTRL+D, whilst CTRL+C interrupts editor mode without input evaluation.
 
+#### Comments
+
+In CoffeeScript, comments are denoted by the `#` character to the end of a line, or from `###` to the next appearance of `###`. This latter allows embedded or multiline comments as well.
+
+    coffee> 11 # 22 ;;; 33 this is a line comment
+    11
+    coffee> 11 ### 22 this is a block comment ### ;;; 33
+    33
+
 ## Literally Speaking
 
-The evaluation of a valid input results either an object description or a _literal value_. Literal is the ultimate output format: REPL does not transform literal values, literal values are _invariant_ to the evaluation loop. The _type_ of literals defines the operations applicable on them. The type of expressions can be identified by the `typeof` operator. The result of the `typeof` operator is a string literal telling the name of the type.
+The evaluation of a valid input results a [literal value](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Literal). Literal is the ultimate output format: REPL does not transform literal values, literal values are _invariant_ to the evaluation loop. The _type_ of literals defines the [operations](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Operation) applicable on them. The type of expressions can be identified by the `typeof` operator. The result of the `typeof` operator is a string literal telling the name of the type.
 
 ### Undefined
 
@@ -87,7 +96,7 @@ The Null type has exactly one value, called `null`, that represents the intentio
 
 ### Boolean
 
-The Boolean type has exactly two values, representing a logical entity. However each values has three different literal forms in CoffeeScript.
+The [Boolean](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Boolean) type has exactly two values, representing a logical entity. However each values has three different literal forms in CoffeeScript.
 
     coffee> true is yes is on
     true
@@ -105,7 +114,7 @@ Values of other types can be converted to Boolean by simply calling the `Boolean
     coffee> Boolean 'false'
     true
 
-The logical `and` operator returns `false` in case its first operand expression converts to Boolean `false`; otherwise the value of the second operand expression is returned. The logical `or` operator returns the value of its first operand expression if the first expression converts to Boolean `true`; otherwise the value of the second operand expression is returned.
+The [logical AND](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#AND) operator returns `false` in case its first operand expression converts to Boolean `false`; otherwise the value of the second operand expression is returned. The [logical OR](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#OR) operator returns the value of its first operand expression if the first expression converts to Boolean `true`; otherwise the value of the second operand expression is returned.
 
     coffee> false and true
     false
@@ -118,9 +127,9 @@ The logical `and` operator returns `false` in case its first operand expression 
 
 ### Number
 
-The Number type is the set of literals corresponding to a double-precision 64-bit binary format [IEEE 754-2008](https://standards.ieee.org/findstds/standard/754-2008.html) value. The evaluation of mathematical and logical expressions follows a well-defined operator precedence and associativity.
+The [Number](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Number) type is the set of literals corresponding to a double-precision 64-bit binary format [IEEE 754-2008](https://standards.ieee.org/findstds/standard/754-2008.html) value. The evaluation of mathematical and logical expressions follows a well-defined operator precedence and associativity. Precedence rules can be overridden by [explicit parentheses](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Parenthetical).
 
-Prefix, right-associative, unary mathematical and logical operators have the highest precedence.
+Prefix, right-associative, [unary](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Unary) mathematical and logical operators have the highest precedence.
 
 <table>
 <tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
@@ -143,7 +152,7 @@ The `**` exponentiation operator has the highest precedence among the binary mat
     <td class="center"><code>2 ** 3</code></td><td class="center"><code>8</code></td></tr>
 </table>
 
-Multiplicative operators have the highest precedence among left-associative mathematical operators. Additive operators have higher precedence than bitwise shift operators. 
+[Multiplicative](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Multiplicative) operators have the highest precedence among left-associative mathematical operators. [Additive](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Additive) operators have higher precedence than [bitwise shift](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Shift) operators. 
 
 <table>
 <tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
@@ -169,7 +178,7 @@ Multiplicative operators have the highest precedence among left-associative math
     <td><code>-100 &gt;&gt;&gt;&gt; 2</code></td><td><code>1073741799</code></td></tr>
 </table>
 
-Equality ( `==`, `is` ) and inequality ( `!=`, `isnt` ) operators in CoffeeScript are always _strict and type-safe_. Although they have lower precedence than other relational operators, _chained comparison_ abolishes the precedence rule: the logical value of the chained comparison is true if and only if each binary relation is true.
+Equality ( `==`, `is` ) and inequality ( `!=`, `isnt` ) operators in CoffeeScript are always _strict and type-safe_. Although they have lower precedence than other [relational operators](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Comparison), _chained comparison_ abolishes the precedence rule: the logical value of the chained comparison is true if and only if each binary relation is true.
 
     coffee> 2 >= 1 > +0 == -0 < 1 <= 2 != 3
     true
@@ -223,7 +232,7 @@ In additive operations zero means nothing. However in multiplicative operations 
 
 ### String
 
-String type is is the set of all ordered sequences of zero or more 16-bit unsigned integer values treated as UTF-16 encoded text data. [Unicode](http://www.unicode.org) code points may also be represented by an [escape sequence](http://www.ecma-international.org/ecma-262/#sec-literals-string-literals). Each character has a position in the string, the first being at index 0, assuming the string is not empty. The length of a string is the number of its 16-bit character elements within it. The empty string has length zero and therefore contains no elements.
+[String](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#String) type is is the set of all ordered sequences of zero or more 16-bit unsigned integer values treated as UTF-16 encoded text data. [Unicode](http://www.unicode.org) code points may also be represented by an [escape sequence](http://www.ecma-international.org/ecma-262/#sec-literals-string-literals). Each character has a position in the string, the first being at index 0, assuming the string is not empty. The length of a string is the number of its 16-bit character elements within it. The empty string has length zero and therefore contains no elements.
 
 Single-quoted strings are literal. <br/>
 Double-quoted strings allow expression interpolation using `#{…}`.
@@ -383,259 +392,3 @@ When `Object` function is called with a boolean, number, or string literal value
 
 
 
-### Creation
-
-Assigmnents
-- variables
-- objects
-- arrays
-  - Destructuring assignments
-  - ranges
-
-### Existence
-
-?
-?=
-?.
-?:
-
-### 
-
-
-
-### The `Object` and its `prototype`
-
-
-
-
-
-
-
-? a változóknál
-++ és -- a változóknál
-
-Az információ rendezett megjelenítéséhez az Array.prototype.sort metódusát használjuk.
-------------------------------------------------------------------------------------------------
-> typeof
-
-
-Az interaktív felület indítása után (coffee vagy node), dupla TAB leütéssel megjelennek
-a közvetlenül elérhetõ és értelmezett nyelvi elemek. Ezek a következõk:
-
-
-
-1. A beépített JavaScript objektumok
-====================================
-# ld. pl. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
-
-  Global Properties: (not objects)
-  ------------------
-    undefined
-    null
-    NaN
-    Infinity
-
-  Global Functions:
-  -----------------
-    eval
-    uneval                                # non standard
-    isFinite
-    isNAN
-    parseFloat
-    parseInt
-    decodeURI
-    decodeURIComponent
-    encodeURI
-    encodeURIComponent
-    escape                                # deprecated
-    unescape                              # deprecated
-
-  Fundamental Objects (a.k.a. Data Types):
-  ----------------------------------------
-    Object
-    Function
-    Boolean
-    Symbol
-
-    Number
-    Math
-    Date
-
-    String
-    RegExp
-
-  Indexed Collections:
-  --------------------
-    Array
-    Float32Array
-    Float64Array
-    Int16Array
-    Int32Array
-    Int8Array
-    Uint16Array
-    Uint32Array
-    Uint8Array
-    Uint8ClampedArray
-
-  Keyed Collections:
-  ------------------
-    Map
-    Set
-    WeakMap
-    WeakSet
-
-  Structured Data:
-  ----------------
-    ArrayBuffer
-    DataView
-    JSON
-
-  Control Abstraction Objects:
-  ----------------------------
-    Generator                           # non standard
-    Promise
-    Proxy
-    Reflect
-
-  Error Objects:
-  --------------
-    Error
-    EvalError
-    InternalError                       # non standard
-    RangeError
-    ReferenceError
-    SyntaxError
-    TypeError
-    URIError
-
-  Other Namespaces
-  ----------------
-    Intl                                # internationalization API
-    WebAssembly
-
-> Object.getOwnPropertyDescriptors(Object.prototype)
-  - Configurable # can be deleted or changed
-  - Enumerable   # can be returned in a for/in loop
-  - Writable     # can be changed
-
-3. A global objektum, VAGYIS a global SCOPE
-===========================================
-
-> Object.keys(global).sort()
-[ 'Buffer',                               # Uint8Array, not in browser
-  'COUNTER_HTTP_CLIENT_REQUEST',
-  'COUNTER_HTTP_CLIENT_RESPONSE',
-  'COUNTER_HTTP_SERVER_REQUEST',
-  'COUNTER_HTTP_SERVER_RESPONSE',
-  'COUNTER_NET_SERVER_CONNECTION',
-  'COUNTER_NET_SERVER_CONNECTION_CLOSE',
-  'DTRACE_HTTP_CLIENT_REQUEST',
-  'DTRACE_HTTP_CLIENT_RESPONSE',
-  'DTRACE_HTTP_SERVER_REQUEST',
-  'DTRACE_HTTP_SERVER_RESPONSE',
-  'DTRACE_NET_SERVER_CONNECTION',
-  'DTRACE_NET_STREAM_END',
-  'clearImmediate',
-  'clearInterval',
-  'clearTimeout',
-  'console',
-  'exports',                              # module scope, not global;
-  'global',                               # Circular
-  'module',                               # module scope, not global; not in browser
-  'process',                              # MAIN NODE OBJECT; not in browser
-  'require',                              # module scope, not global; not in browser
-  'setImmediate',
-  'setInterval',
-  'setTimeout' ]
-
-> GLOBAL is global
-> root is global
-> this is global
-
-4. A NODE CORE API MODULOK:
-===========================
-
-> repl._builtinLibs
-[ 'assert',
-  'async_hooks',
-  'buffer',
-  'child_process',
-  'cluster',
-  'crypto',
-  'dgram',
-  'dns',
-  'domain',
-  'events',
-  'fs',
-  'http',
-  'https',
-  'net',
-  'os',
-  'path',
-  'punycode',
-  'querystring',
-  'readline',
-  'repl',
-  'stream',
-  'string_decoder',
-  'tls',
-  'tty',
-  'url',
-  'util',
-  'v8',
-  'vm',
-  'zlib' ]
-
-Keywords
-========
-  by
-  catch
-  class
-  do    // immediately invokes a passed function, forwarding any arguments
-  else
-  false // = not true
-  for
-  for own
-  from
-  function // nem használjuk, csak fenntartott a JS miatt
-  if
-  in // object or array values
-  is // ===
-  loop  // = while true
-  not
-  null
-  of // object properties or array indexes
-  off // = not true
-  on // = true
-  return // csak önmagában, és olyankor a jelentése return undefined
-  switch
-  true
-  try
-  undefined // nem használjuk, csak fenntartott a JS miatt
-  unless // = if not
-  until // = while not
-  var // nem használjuk, csak fenntartott a JS miatt
-  while
-  when
-
-- You don’t need to use semicolons ; to terminate expressions, ending the line will do just as well (although semicolons can still be used to fit multiple expressions onto a single line).
-
-- Instead of using curly braces { } to surround blocks of code in functions, if-statements, switch, and try/catch, use indentation.
-
-- Functions are defined by an optional list of parameters in parentheses, an arrow, and the function body. The empty function looks like this: ->
-
-- Functions may also have default values for arguments, which will be used if the incoming argument is missing (undefined).
-
-- Objects may be created using indentation instead of explicit braces.
-
-- When each property is listed on its own line, the commas are optional.
-
-- comments are denoted by the # character to the end of a line, or from ### to the next appearance of ###.
-
-- if/else statements can be written without the use of parentheses and curly brackets.
-
-- As with functions and other block expressions, multi-line conditionals are delimited by indentation.
-
-- There’s also a handy postfix form, with the if or unless at the end.
-
-- There is no explicit ternary statement in CoffeeScript — you simply use a regular if statement on a single line.
