@@ -98,6 +98,7 @@ td.center {
   text-align: center;
 }
 
+tr th,
 tr.bottom td {
   border-bottom: thin solid black;
 }
