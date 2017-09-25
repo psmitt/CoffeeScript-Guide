@@ -173,7 +173,7 @@ coffee&gt; 'false' or 'true'
 <tr><td class="center"><code>&gt;&gt;&gt;</code></td><td>bitwise unsigned right shift</td>
     <td><code>-100 &gt;&gt;&gt;&gt; 2</code></td><td><code>1073741799</code></td></tr>
 </table>
-<p>Equality ( <code>==</code>, <code>is</code> ) and inequality ( <code>!=</code>, <code>isnt</code> ) operators in CoffeeScript are always <em>strict and type-safe</em>. Although they have lower precedence than other <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Comparison">relational operators</a>, <em>chained comparison</em> abolishes the precedence rule: the logical value of the chained comparison is true if and only if each binary relation is true.</p>
+<p>Equality ( <code>==</code>, <code>is</code> ) and inequality ( <code>!=</code>, <code>isnt</code> ) operators in CoffeeScript are always <em>strict and type-safe</em>. Although they have lower precedence than other <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Comparison">comparison operators</a>, <em>chained comparison</em> abolishes the precedence rule: the logical value of the chained comparison is true if and only if each binary relation is true.</p>
 <pre><code>coffee&gt; 2 &gt;= 1 &gt; +0 == -0 &lt; 1 &lt;= 2 != 3
 true
 </code></pre>
@@ -300,7 +300,7 @@ coffee&gt; `[ 1,, 'Elision' ,, 2 ]`
 [ 1, &lt;1 empty item&gt;, 'Elision', &lt;1 empty item&gt;, 2 ]
 </code></pre>
 <h4>Ranges</h4>
-<p>A <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Range">range</a> is an array object of an increasing or decreasing sequence of numbers, where the difference between the consecutive elements is 1. The literal representation of a range is the range limits in brackets with two or three dots in between them.</p>
+<p>A <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Range">Range</a> is an array object of an increasing or decreasing sequence of numbers, where the difference between the consecutive elements is 1. The literal representation of a range is the range limits in brackets with two or three dots in between them.</p>
 <p>The first element of the range is the value of the first expression in the brackets. The limit of the range is the value of the second expression. The sequence is increasing if the first element is less than the limit, otherwise it is decreasing. The sequence stops at the range limit. In case of two dots the limit is included in the range, if the limit is an element of the sequence. Otherwise the limit is excluded from the range.</p>
 <pre><code>coffee&gt; [1..5]
 [ 1, 2, 3, 4, 5 ]
@@ -312,7 +312,7 @@ coffee&gt; [1..5] instanceof Array
 true
 </code></pre>
 <h4>Slices</h4>
-<p>Ranges used as index can slice strings and arrays. In order to properly index string characters or array elements, range must be a sequence of increasing natural numbers under the length of the string / array. Therefore the limits of the range are always truncated, and then transformed to the remainder of the Euclidean division by the lenght of the string / array. The result of slicing is the collection of string characters or array elements indexed by the elements of the transformed range. Range limits can be omitted: the default lower limit is zero, the default upper limit is the length of the string / array, excluded from the range.</p>
+<p>Ranges used as <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Range">index</a> can slice strings and arrays. In order to properly index string characters or array elements, range must be a sequence of increasing natural numbers under the length of the string / array. Therefore the limits of the range are always truncated, and then transformed to the remainder of the Euclidean division by the lenght of the string / array. The result of slicing is the collection of string characters or array elements indexed by the elements of the transformed range. Range limits can be omitted: the default lower limit is zero, the default upper limit is the length of the string / array, excluded from the range.</p>
 <pre><code>coffee&gt; '0123456789'[3..6]
 '3456'
 coffee&gt; '0123456789'[..-3]
@@ -349,7 +349,7 @@ coffee&gt; say 'Hello!'
 'Hello!'
 </code></pre>
 <h2>Assignments</h2>
-<p><a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Assignment">Assigment</a> expressions make values stored in a retrievable way, or modify the content value of an already existing storage ( a.k.a. <em>compound assignment</em> ). The storage name identifies the stored value in the current <a href="http://www.ecma-international.org/ecma-262/#sec-executable-code-and-execution-contexts">scope</a>. The identifier is called <em>property</em> when the association between the name and the value is a part of an object. The identifier is called <em>variable</em> when the association between the name and the value exists within an execution context ( e.g. in a function body ).</p>
+<p><a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Assignment">Assigment</a> expressions make values stored in a retrievable way, or modify the content value of an already existing storage ( a.k.a. <em>compound assignment</em> ). The storage name identifies the stored value in the current <a href="http://www.ecma-international.org/ecma-262/#sec-executable-code-and-execution-contexts">scope</a>. The <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Identifier">identifier</a> is called <em>property</em> when the association between the name and the value is a part of an object. The identifier is called <em>variable</em> when the association between the name and the value exists within an execution context ( e.g. in a function body ).</p>
 <p>The indented block structure of an object description makes the braces and commas omittable. Even existing name and value associations can be reused for creation of new objects, but braces are required in this latter case to create the new scope.</p>
 <pre><code>coffee&gt; one = 1
 1
@@ -375,7 +375,7 @@ coffee&gt; array = [ 'one', triplet..., 'five']
 [ 'one', 2, 3, 4, 'five' ]
 </code></pre>
 <h3>Accessing Properties</h3>
-<p>New properties for existing objects can be easily created by assigning a value to the property name. This is the only way to create properties with Symbol keys. Symbol keys should be stored in the outer scope if the property must be accessible directly after the assignment. Existing ( and accessible ) properties of an object can be removed from the outer scope by <code>delete</code> operator.</p>
+<p>New properties for existing objects can be easily created by assigning a value to the property name. This is the only way to create properties with Symbol keys. Symbol keys should be stored in the outer scope if the property must be <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Accessor">accessible</a> directly after the assignment. Existing ( and accessible ) properties of an object can be removed from the outer scope by <code>delete</code> operator.</p>
 <pre><code>coffee&gt; obj = new Object
 {}
 coffee&gt; KEY = Symbol('key')
@@ -472,7 +472,7 @@ coffee&gt;
         <br/> otherwise returns the original value of <code>v</code></td></tr>
 </table>
 <h3>Destructuring Assignments</h3>
-<p>Destructuring assignment is an expression storing values exctacted from an object or array, into variables of the current scope. Identifiers on the left side have to be structured in the same way as the object or array on the right side in order to assign them the appropriate value. In case of object the identifiers must have the same name as the object's properties to match them. In case of array the assignments are based on the order of names and values.</p>
+<p><a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Assignable">Destructuring assignment</a> is an expression storing values exctacted from an object or array, into variables of the current scope. Identifiers on the left side have to be structured in the same way as the object or array on the right side in order to assign them the appropriate value. In case of object the identifiers must have the same name as the object's properties to match them. In case of array the assignments are based on the order of names and values.</p>
 <pre><code>------&gt; object =
 .......   outer : 1
 .......   inner :
@@ -503,17 +503,26 @@ coffee&gt; numbers
 [ 0, 1, 2, 30, 40, 50, 60, 7, 8, 9 ]
 </code></pre>
 <h2>Functions</h2>
-<p>A <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Function">Function</a> object contains an executable code block ( a.k.a <em>function body</em> ), which can receive runtime values to process, through an optional parameter list. The literal form of a function is called <em>anonymous function</em> which can be assigned to a function name. The execution of a function is initiated by the invocation of the function name and enumeration of the argument expressions initializing the parameters.</p>
+<p>A <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Function">Function</a> object contains an executable code block ( a.k.a <em>function body</em> ), which can receive runtime values to process, through an optional parameter list. The literal form of a function is called <em>anonymous function</em> which can be assigned to a function name. The execution of a function is initiated by the invocation of the function name and the enumeration of the argument expressions initializing the parameters.</p>
 <p>The result of a function execution is the value of the last expression evaluated in the function body, or the value of the expression returned by a <code>return</code> statement.</p>
-<h3>Invocations ( a.k.a. Function Calls )</h3>
-<p>Argumentumok nélkül is lehet függényt hívni, ha utána írunk pl. egy kifejezést. Átadja ugyan a függvénynek, mint argumentumot, de az nem dolgozza fel.</p>
-<h4>Default Parameters</h4>
-<p>when argument is missing or undefined, but not when null!</p>
-<h4>Rest Parameters</h4>
-<p>...
-variable number of arguments</p>
-<h4>Tagged Templates</h4>
-<p>A tagged template is a function call where the arguments of the call are derived from the postfix string with interpolations following the function name without spaces. The first argument is the array of text fragments between the interpolations, the following arguments are the values of the interpolated expressions.</p>
+<h3>Default Parameters</h3>
+<p>Default <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Param">parameter</a> values can be given for functions in case of the corresponding argument is missing or <code>undefined</code>.</p>
+<pre><code>coffee&gt; fun = (one = 1, two = 2, three = 3) -&gt; [ one, two, three ]
+[Function: fun]
+coffee&gt; fun undefined, 5
+[ 1, 5, 3 ]
+</code></pre>
+<h3>Rest Parameter</h3>
+<p>Surplus arguments does not cause error in a function call: they become evaluated, just not processes by the function by default. Functions can however handle variable number of arguments too, with splats <code>...</code> after the last parameter name. The rest parameter is the array of the rest of the arguments.</p>
+<pre><code>coffee&gt; team = ( first, second, rest... ) -&gt; [ first, second, rest ]
+[Function: team]
+coffee&gt; team 'Ann', 'Bob', 'Chad', 'Dolly', 'Eve', 'Frank'
+[ 'Ann', 'Bob', [ 'Chad', 'Dolly', 'Eve', 'Frank' ] ]
+coffee&gt; team 'Ann'
+[ 'Ann', undefined, [] ]
+</code></pre>
+<h3>Tagged Templates</h3>
+<p>A tagged template is a <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Invocation">function call</a> where the arguments of the call are derived from the postfix string with interpolations following the function name <strong>without spaces</strong>. The first argument is the array of text fragments between the interpolations, the following arguments are the values of the interpolated expressions.</p>
 <pre><code>------&gt; decompose = (text, interpolations...) -&gt;
 .......   { fragments : text, interpolations }
 [Function: decompose]
@@ -523,9 +532,34 @@ coffee&gt; decompose&quot;One, #{ 2 }, three, #{ 4 }&quot;
 { fragments: [ 'One, ', ', three, ', '' ],
   interpolations: [ 2, 4 ] }
 </code></pre>
-<h4>Chained Invocations</h4>
-<p>leading dot</p>
-<h4>Generator Functions</h4>
+<h3>Chained Invocations</h3>
+<p>Leading <code>.</code> closes all open calls, allowing for simpler chaining syntax.</p>
+<pre><code>------&gt; 'abcdefgh'
+....... .split ''
+....... .reverse()
+....... .join ''
+'hgfedcba'
+</code></pre>
+<h3>Generator Functions</h3>
+<p>Functions containing a <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Conditional">Yield</a> statement in the body has a static context, preserving any changes in between two consecutive invocation. The first invocation of the function returns an iterator. The sequence of yielded values can be generated by calling the <code>next</code> method of the iterator until the generator function's body gets completed.</p>
+<pre><code>------&gt; counter123 = -&gt;
+.......   n = 0
+.......   yield ++n until n is 3
+.......   return 'Go!'
+[GeneratorFunction: counter123]
+coffee&gt; iterator = counter123()
+{}
+coffee&gt; iterator.next()
+{ value: 1, done: false }
+coffee&gt; iterator.next()
+{ value: 2, done: false }
+coffee&gt; iterator.next()
+{ value: 3, done: false }
+coffee&gt; iterator.next()
+{ value: 'Go!', done: true }
+coffee&gt; iterator.next()
+{ value: undefined, done: true }
+</code></pre>
 <h2>Control Structures</h2>
 <h3>Conditional Expressions</h3>
 <p><a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Conditional">Conditional</a> expressions or statements have both prefix and postfix form; the latter is used for one-liners. The flow control is determined by either <code>if</code> or <code>unless</code> keywords to the true or false direction, respectively. Prefixed conditional blocks can be extended with <code>else</code> branches.</p>
@@ -600,8 +634,20 @@ coffee&gt; &quot;#{ key } = #{ value }&quot; for key, value of numbers
 [ 'two = 2', 'six = 6', 'ten = 10' ]
 </code></pre>
 <p>In order to iterate only over non-inherited properties of an object, the <code>for own</code> - <code>of</code> syntax may be used.</p>
-<p>In order to iterate a generator function</p>
+<p>In order to iterate a generator function the <code>for</code> - <code>from</code> syntax may be used.</p>
+<pre><code>------&gt; counter123 = -&gt;
+.......   n = 0
+.......   yield ++n until n is 3
+coffee&gt; for i from counter123() then i
+[ 1, 2, 3 ]
+</code></pre>
 <h3>Unconditional Loops</h3>
+<p>Iterations of a block or expression is even possible without loop condition, simply prefixing them with <code>loop</code>. In this case it is the developer's responsibility to <code>break</code> the loop from the loop body in order to avoid an infinite loop.</p>
+<pre><code>coffee&gt; n = 0
+0
+coffee&gt; loop if ++n &gt;= 10 then break else n if n % 2
+[ 1, undefined, 3, undefined, 5, undefined, 7, undefined, 9 ]
+</code></pre>
 <h2>Objects All Around</h2>
 <p>Exit and enter REPL for a fresh start. REPL's lexical environment is a <em>global environment</em>, prepopulated with identifier bindings, and includes an associated <em>global object</em> whose properties provide some of the global environment's identifier bindings.</p>
 <p>Use the autocomplete function of REPL to discover existing entities. List all available identifiers in the current namespace by a double TAB in an empty line. Get the same list by pressing TAB twice after <code>global.</code> or <code>this.</code>, printing the properties of the global object. The global object inherits some properties from <code>Object</code>, the rests are its own properties. Display the inherited properties by a double TAB after <code>Object.prototype.</code>, then list the global object's own properties by calling <code>Object.getOwnPropertyNames global</code>.</p>

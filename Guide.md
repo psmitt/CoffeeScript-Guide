@@ -178,7 +178,7 @@ The `**` exponentiation operator has the highest precedence among the binary mat
     <td><code>-100 &gt;&gt;&gt;&gt; 2</code></td><td><code>1073741799</code></td></tr>
 </table>
 
-Equality ( `==`, `is` ) and inequality ( `!=`, `isnt` ) operators in CoffeeScript are always _strict and type-safe_. Although they have lower precedence than other [relational operators](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Comparison), _chained comparison_ abolishes the precedence rule: the logical value of the chained comparison is true if and only if each binary relation is true.
+Equality ( `==`, `is` ) and inequality ( `!=`, `isnt` ) operators in CoffeeScript are always _strict and type-safe_. Although they have lower precedence than other [comparison operators](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Comparison), _chained comparison_ abolishes the precedence rule: the logical value of the chained comparison is true if and only if each binary relation is true.
 
     coffee> 2 >= 1 > +0 == -0 < 1 <= 2 != 3
     true
@@ -328,7 +328,7 @@ An [Array](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xm
 
 #### Ranges
 
-A [range](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Range) is an array object of an increasing or decreasing sequence of numbers, where the difference between the consecutive elements is 1. The literal representation of a range is the range limits in brackets with two or three dots in between them.
+A [Range](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Range) is an array object of an increasing or decreasing sequence of numbers, where the difference between the consecutive elements is 1. The literal representation of a range is the range limits in brackets with two or three dots in between them.
 
 The first element of the range is the value of the first expression in the brackets. The limit of the range is the value of the second expression. The sequence is increasing if the first element is less than the limit, otherwise it is decreasing. The sequence stops at the range limit. In case of two dots the limit is included in the range, if the limit is an element of the sequence. Otherwise the limit is excluded from the range.
 
@@ -343,7 +343,7 @@ The first element of the range is the value of the first expression in the brack
 
 #### Slices
 
-Ranges used as index can slice strings and arrays. In order to properly index string characters or array elements, range must be a sequence of increasing natural numbers under the length of the string / array. Therefore the limits of the range are always truncated, and then transformed to the remainder of the Euclidean division by the lenght of the string / array. The result of slicing is the collection of string characters or array elements indexed by the elements of the transformed range. Range limits can be omitted: the default lower limit is zero, the default upper limit is the length of the string / array, excluded from the range.
+Ranges used as [index](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Range) can slice strings and arrays. In order to properly index string characters or array elements, range must be a sequence of increasing natural numbers under the length of the string / array. Therefore the limits of the range are always truncated, and then transformed to the remainder of the Euclidean division by the lenght of the string / array. The result of slicing is the collection of string characters or array elements indexed by the elements of the transformed range. Range limits can be omitted: the default lower limit is zero, the default upper limit is the length of the string / array, excluded from the range.
 
     coffee> '0123456789'[3..6]
     '3456'
@@ -387,7 +387,7 @@ Literal JavaScript code can be embedded into CoffeeScript between backticks.
 
 ## Assignments
 
-[Assigment](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Assignment) expressions make values stored in a retrievable way, or modify the content value of an already existing storage ( a.k.a. _compound assignment_ ). The storage name identifies the stored value in the current [scope](http://www.ecma-international.org/ecma-262/#sec-executable-code-and-execution-contexts). The identifier is called _property_ when the association between the name and the value is a part of an object. The identifier is called _variable_ when the association between the name and the value exists within an execution context ( e.g. in a function body ).
+[Assigment](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Assignment) expressions make values stored in a retrievable way, or modify the content value of an already existing storage ( a.k.a. _compound assignment_ ). The storage name identifies the stored value in the current [scope](http://www.ecma-international.org/ecma-262/#sec-executable-code-and-execution-contexts). The [identifier](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Identifier) is called _property_ when the association between the name and the value is a part of an object. The identifier is called _variable_ when the association between the name and the value exists within an execution context ( e.g. in a function body ).
 
 The indented block structure of an object description makes the braces and commas omittable. Even existing name and value associations can be reused for creation of new objects, but braces are required in this latter case to create the new scope.
 
@@ -417,7 +417,7 @@ Existing objects and arrays can be reused to create new ones. In order to includ
 
 ### Accessing Properties
 
-New properties for existing objects can be easily created by assigning a value to the property name. This is the only way to create properties with Symbol keys. Symbol keys should be stored in the outer scope if the property must be accessible directly after the assignment. Existing ( and accessible ) properties of an object can be removed from the outer scope by `delete` operator.
+New properties for existing objects can be easily created by assigning a value to the property name. This is the only way to create properties with Symbol keys. Symbol keys should be stored in the outer scope if the property must be [accessible](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Accessor) directly after the assignment. Existing ( and accessible ) properties of an object can be removed from the outer scope by `delete` operator.
 
     coffee> obj = new Object
     {}
@@ -511,7 +511,7 @@ The existential operator `?` serves to test if an identifier exists in the curre
 
 ### Destructuring Assignments
 
-Destructuring assignment is an expression storing values exctacted from an object or array, into variables of the current scope. Identifiers on the left side have to be structured in the same way as the object or array on the right side in order to assign them the appropriate value. In case of object the identifiers must have the same name as the object's properties to match them. In case of array the assignments are based on the order of names and values.
+[Destructuring assignment](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Assignable) is an expression storing values exctacted from an object or array, into variables of the current scope. Identifiers on the left side have to be structured in the same way as the object or array on the right side in order to assign them the appropriate value. In case of object the identifiers must have the same name as the object's properties to match them. In case of array the assignments are based on the order of names and values.
 
     ------> object =
     .......   outer : 1
@@ -546,27 +546,33 @@ Splicing means to replace a segment of an array with new elements. In order to s
 
 ## Functions
 
-A [Function](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Function) object contains an executable code block ( a.k.a _function body_ ), which can receive runtime values to process, through an optional parameter list. The literal form of a function is called _anonymous function_ which can be assigned to a function name. The execution of a function is initiated by the invocation of the function name and enumeration of the argument expressions initializing the parameters.
+A [Function](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Function) object contains an executable code block ( a.k.a _function body_ ), which can receive runtime values to process, through an optional parameter list. The literal form of a function is called _anonymous function_ which can be assigned to a function name. The execution of a function is initiated by the invocation of the function name and the enumeration of the argument expressions initializing the parameters.
 
+The result of a function execution is the value of the last expression evaluated in the function body, or the value of the expression returned by a `return` statement.
+ 
+### Default Parameters
 
-The result of a function execution is the value of the last expression evaluated in the function body, or the value of the expression returned by a `return` statement. 
+Default [parameter](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Param) values can be given for functions in case of the corresponding argument is missing or `undefined`.
 
-### Invocations ( a.k.a. Function Calls )
+    coffee> fun = (one = 1, two = 2, three = 3) -> [ one, two, three ]
+    [Function: fun]
+    coffee> fun undefined, 5
+    [ 1, 5, 3 ]
 
-Argumentumok nélkül is lehet függényt hívni, ha utána írunk pl. egy kifejezést. Átadja ugyan a függvénynek, mint argumentumot, de az nem dolgozza fel.
+### Rest Parameter
 
-#### Default Parameters
+Surplus arguments does not cause error in a function call: they become evaluated, just not processes by the function by default. Functions can however handle variable number of arguments too, with splats `...` after the last parameter name. The rest parameter is the array of the rest of the arguments.
 
-when argument is missing or undefined, but not when null!
+    coffee> team = ( first, second, rest... ) -> [ first, second, rest ]
+    [Function: team]
+    coffee> team 'Ann', 'Bob', 'Chad', 'Dolly', 'Eve', 'Frank'
+    [ 'Ann', 'Bob', [ 'Chad', 'Dolly', 'Eve', 'Frank' ] ]
+    coffee> team 'Ann'
+    [ 'Ann', undefined, [] ]
 
-#### Rest Parameters
+### Tagged Templates
 
-...
-variable number of arguments
-
-#### Tagged Templates
-
-A tagged template is a function call where the arguments of the call are derived from the postfix string with interpolations following the function name without spaces. The first argument is the array of text fragments between the interpolations, the following arguments are the values of the interpolated expressions.
+A tagged template is a [function call](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Invocation) where the arguments of the call are derived from the postfix string with interpolations following the function name __without spaces__. The first argument is the array of text fragments between the interpolations, the following arguments are the values of the interpolated expressions.
 
     ------> decompose = (text, interpolations...) ->
     .......   { fragments : text, interpolations }
@@ -577,12 +583,37 @@ A tagged template is a function call where the arguments of the call are derived
     { fragments: [ 'One, ', ', three, ', '' ],
       interpolations: [ 2, 4 ] }
 
-#### Chained Invocations
+### Chained Invocations
 
-leading dot
+Leading `.` closes all open calls, allowing for simpler chaining syntax.
 
+    ------> 'abcdefgh'
+    ....... .split ''
+    ....... .reverse()
+    ....... .join ''
+    'hgfedcba'
 
-#### Generator Functions
+### Generator Functions
+
+Functions containing a [Yield](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Conditional) statement in the body has a static context, preserving any changes in between two consecutive invocation. The first invocation of the function returns an iterator. The sequence of yielded values can be generated by calling the `next` method of the iterator until the generator function's body gets completed.
+
+    ------> counter123 = ->
+    .......   n = 0
+    .......   yield ++n until n is 3
+    .......   return 'Go!'
+    [GeneratorFunction: counter123]
+    coffee> iterator = counter123()
+    {}
+    coffee> iterator.next()
+    { value: 1, done: false }
+    coffee> iterator.next()
+    { value: 2, done: false }
+    coffee> iterator.next()
+    { value: 3, done: false }
+    coffee> iterator.next()
+    { value: 'Go!', done: true }
+    coffee> iterator.next()
+    { value: undefined, done: true }
 
 ## Control Structures
 
@@ -669,11 +700,22 @@ When iterating over an array with `for` - `in` syntax, the first parameter after
 
 In order to iterate only over non-inherited properties of an object, the `for own` - `of` syntax may be used.
 
-In order to iterate a generator function
+In order to iterate a generator function the `for` - `from` syntax may be used.
+
+    ------> counter123 = ->
+    .......   n = 0
+    .......   yield ++n until n is 3
+    coffee> for i from counter123() then i
+    [ 1, 2, 3 ]
 
 ### Unconditional Loops
 
+Iterations of a block or expression is even possible without loop condition, simply prefixing them with `loop`. In this case it is the developer's responsibility to `break` the loop from the loop body in order to avoid an infinite loop.
 
+    coffee> n = 0
+    0
+    coffee> loop if ++n >= 10 then break else n if n % 2
+    [ 1, undefined, 3, undefined, 5, undefined, 7, undefined, 9 ]
   
 ## Objects All Around
 
