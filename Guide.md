@@ -6,7 +6,7 @@
 
 Depending on the host environment CoffeeScript can be used as a domain-specific scripting language for web browsers, or as a general-purpose programming language for various software platforms. The host environment of objects and facilities completes the capabilities of the scripting language.
 
-This Guide follows the _learning by doing_ principle, using the methodology of exploratory programming for teaching the [elements of CoffeeScript language](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml) while discovering the runtime environment. The domain exploration is made possible by an interactive language shell running a read-eval-print loop ( [REPL](https://nodejs.org/api/repl.html) ). REPL takes single user inputs, evaluates them, and returns the result to the user.
+This Guide follows the _learning by doing_ principle, using the methodology of exploratory programming for teaching the [elements of CoffeeScript language](https://psmitt.github.io/grammar/CoffeeScript.xml) while discovering the runtime environment. The domain exploration is made possible by an interactive language shell running a read-eval-print loop ( [REPL](https://nodejs.org/api/repl.html) ). REPL takes single user inputs, evaluates them, and returns the result to the user.
 
 ### Have a Coffee
 
@@ -55,7 +55,7 @@ REPL reads one or more input lines, evaluates the code, realizes side effects, a
     coffee> 11 ; 22 ;;; 33
     33
 
-Multi-line input mode can be started by pressing CTRL+V. Then the prompt changes and pressing ENTER produces a simple line break. Similarly to semicolons, line breaks [terminate](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#T) expressions. Pressing CTRL+V again in the beginning of an empty line makes the previous lines evaluated and switches back to single-line input mode.
+Multi-line input mode can be started by pressing CTRL+V. Then the prompt changes and pressing ENTER produces a simple line break. Similarly to semicolons, line breaks [terminate](https://psmitt.github.io/grammar/CoffeeScript.xml#T) expressions. Pressing CTRL+V again in the beginning of an empty line makes the previous lines evaluated and switches back to single-line input mode.
 
     ------> 11
     ....... 22
@@ -76,7 +76,7 @@ In CoffeeScript, comments are denoted by the `#` character to the end of a line,
 
 ## Literally Speaking
 
-The evaluation of a valid input results a [literal value](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Literal). Literal is the ultimate output format: REPL does not transform literal values, literal values are _invariant_ to the evaluation loop. The _type_ of literals defines the [operations](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Operation) applicable on them. The type of expressions can be identified by the `typeof` operator. The result of the `typeof` operator is a string literal telling the name of the type.
+The evaluation of a valid input results a [literal value](https://psmitt.github.io/grammar/CoffeeScript.xml#Literal). Literal is the ultimate output format: REPL does not transform literal values, literal values are _invariant_ to the evaluation loop. The _type_ of literals defines the [operations](https://psmitt.github.io/grammar/CoffeeScript.xml#Operation) applicable on them. The type of expressions can be identified by the `typeof` operator. The result of the `typeof` operator is a string literal telling the name of the type.
 
 ### Undefined
 
@@ -96,7 +96,7 @@ The Null type has exactly one value, called `null`, that represents the intentio
 
 ### Boolean
 
-The [Boolean](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Boolean) type has exactly two values, representing a logical entity. However each values has three different literal forms in CoffeeScript.
+The [Boolean](https://psmitt.github.io/grammar/CoffeeScript.xml#Boolean) type has exactly two values, representing a logical entity. However each values has three different literal forms in CoffeeScript.
 
     coffee> true is yes is on
     true
@@ -114,7 +114,7 @@ Values of other types can be converted to Boolean by simply calling the `Boolean
     coffee> Boolean 'false'
     true
 
-The [logical AND](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#AND) operator returns `false` in case its first operand expression converts to Boolean `false`; otherwise the value of the second operand expression is returned. The [logical OR](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#OR) operator returns the value of its first operand expression if the first expression converts to Boolean `true`; otherwise the value of the second operand expression is returned.
+The [logical AND](https://psmitt.github.io/grammar/CoffeeScript.xml#AND) operator returns `false` in case its first operand expression converts to Boolean `false`; otherwise the value of the second operand expression is returned. The [logical OR](https://psmitt.github.io/grammar/CoffeeScript.xml#OR) operator returns the value of its first operand expression if the first expression converts to Boolean `true`; otherwise the value of the second operand expression is returned.
 
     coffee> false and true
     false
@@ -127,9 +127,9 @@ The [logical AND](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeSc
 
 ### Numbers
 
-The [Number](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Number) type is the set of literals corresponding to a double-precision 64-bit binary format [IEEE 754-2008](https://standards.ieee.org/findstds/standard/754-2008.html) value. The evaluation of mathematical and logical expressions follows a well-defined operator precedence and associativity. Precedence rules can be overridden by [explicit parentheses](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Parenthetical).
+The [Number](https://psmitt.github.io/grammar/CoffeeScript.xml#Number) type is the set of literals corresponding to a double-precision 64-bit binary format [IEEE 754-2008](https://standards.ieee.org/findstds/standard/754-2008.html) value. The evaluation of mathematical and logical expressions follows a well-defined operator precedence and associativity. Precedence rules can be overridden by [explicit parentheses](https://psmitt.github.io/grammar/CoffeeScript.xml#Parenthetical).
 
-Prefix, right-associative, [unary](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Unary) mathematical and logical operators have the highest precedence.
+Prefix, right-associative, [unary](https://psmitt.github.io/grammar/CoffeeScript.xml#Unary) mathematical and logical operators have the highest precedence.
 
 <table>
 <tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
@@ -152,7 +152,7 @@ The `**` exponentiation operator has the highest precedence among the binary mat
     <td class="center"><code>2 ** 3</code></td><td class="center"><code>8</code></td></tr>
 </table>
 
-[Multiplicative](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Multiplicative) operators have the highest precedence among left-associative mathematical operators. [Additive](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Additive) operators have higher precedence than [bitwise shift](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Shift) operators. 
+[Multiplicative](https://psmitt.github.io/grammar/CoffeeScript.xml#Multiplicative) operators have the highest precedence among left-associative mathematical operators. [Additive](https://psmitt.github.io/grammar/CoffeeScript.xml#Additive) operators have higher precedence than [bitwise shift](https://psmitt.github.io/grammar/CoffeeScript.xml#Shift) operators. 
 
 <table>
 <tr class="bottom"><th>Operator</th><td><b>Meaning</b></td><td><b>Example<b/></td><td><b>Result<b/></td></tr>
@@ -178,7 +178,7 @@ The `**` exponentiation operator has the highest precedence among the binary mat
     <td><code>-100 &gt;&gt;&gt;&gt; 2</code></td><td><code>1073741799</code></td></tr>
 </table>
 
-Equality ( `==`, `is` ) and inequality ( `!=`, `isnt` ) operators in CoffeeScript are always _strict and type-safe_. Although they have lower precedence than other [comparison operators](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Comparison), _chained comparison_ abolishes the precedence rule: the logical value of the chained comparison is true if and only if each binary relation is true.
+Equality ( `==`, `is` ) and inequality ( `!=`, `isnt` ) operators in CoffeeScript are always _strict and type-safe_. Although they have lower precedence than other [comparison operators](https://psmitt.github.io/grammar/CoffeeScript.xml#Comparison), _chained comparison_ abolishes the precedence rule: the logical value of the chained comparison is true if and only if each binary relation is true.
 
     coffee> 2 >= 1 > +0 == -0 < 1 <= 2 != 3
     true
@@ -232,7 +232,7 @@ In additive operations zero means nothing. However in multiplicative operations 
 
 ### Strings
 
-[String](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#String) type is is the set of all ordered sequences of zero or more 16-bit unsigned integer values treated as UTF-16 encoded text data. [Unicode](http://www.unicode.org) code points may also be represented by an [escape sequence](http://www.ecma-international.org/ecma-262/#sec-literals-string-literals). Each character has a position in the string, the first being at index 0, assuming the string is not empty. The length of a string is the number of its 16-bit character elements within it. The empty string has length zero and therefore contains no elements.
+[String](https://psmitt.github.io/grammar/CoffeeScript.xml#String) type is is the set of all ordered sequences of zero or more 16-bit unsigned integer values treated as UTF-16 encoded text data. [Unicode](http://www.unicode.org) code points may also be represented by an [escape sequence](http://www.ecma-international.org/ecma-262/#sec-literals-string-literals). Each character has a position in the string, the first being at index 0, assuming the string is not empty. The length of a string is the number of its 16-bit character elements within it. The empty string has length zero and therefore contains no elements.
 
 Single-quoted strings are literal. <br/>
 Double-quoted strings allow expression interpolation using `#{…}`.
@@ -298,7 +298,7 @@ Each possible Symbol value is unique and immutable. Even symbols having the same
 
 ### Objects
 
-An [Object](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Object) type is a collection of properties. Properties are identified and accessible using _key_ values. A property key is either a Symbol ( _id_ ), String ( _name_ ) or natural Number ( _index_ ).
+An [Object](https://psmitt.github.io/grammar/CoffeeScript.xml#Object) type is a collection of properties. Properties are identified and accessible using _key_ values. A property key is either a Symbol ( _id_ ), String ( _name_ ) or natural Number ( _index_ ).
 
 An object literal is a list of name-value pairs wrapped in curly braces. Properties can be separated by commas, semicolons, and/or line breaks; keys and values must be separated by a colon. Object literals encapsulate data, creating a separate namespace for the properties. CoffeeScript does not allow Symbol keys in object literals; object properties with Symbol keys must be assigned separately.
 
@@ -317,7 +317,7 @@ Each object is a unique entity; object instances differ even when they have the 
 
 ### Arrays
 
-An [Array](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Array) object is a collection of values, identified and accessible via natural number indexes. The literal representation of arrays is the list of values in brackets, separated by commas, semicolons, and/or line breaks. Elisions are not allowed in CoffeeScript; use elisions in JavaScript literal instead.
+An [Array](https://psmitt.github.io/grammar/CoffeeScript.xml#Array) object is a collection of values, identified and accessible via natural number indexes. The literal representation of arrays is the list of values in brackets, separated by commas, semicolons, and/or line breaks. Elisions are not allowed in CoffeeScript; use elisions in JavaScript literal instead.
 
     coffee> [ undefined; null; false; 0; ''; NaN ]
     [ undefined, null, false, 0, '', NaN ]
@@ -328,7 +328,7 @@ An [Array](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xm
 
 #### Ranges
 
-A [Range](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Range) is an array object of an increasing or decreasing sequence of numbers, where the difference between the consecutive elements is 1. The literal representation of a range is the range limits in brackets with two or three dots in between them.
+A [Range](https://psmitt.github.io/grammar/CoffeeScript.xml#Range) is an array object of an increasing or decreasing sequence of numbers, where the difference between the consecutive elements is 1. The literal representation of a range is the range limits in brackets with two or three dots in between them.
 
 The first element of the range is the value of the first expression in the brackets. The limit of the range is the value of the second expression. The sequence is increasing if the first element is less than the limit, otherwise it is decreasing. The sequence stops at the range limit. In case of two dots the limit is included in the range, if the limit is an element of the sequence. Otherwise the limit is excluded from the range.
 
@@ -343,7 +343,7 @@ The first element of the range is the value of the first expression in the brack
 
 #### Slices
 
-Ranges used as [index](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Range) can slice strings and arrays. In order to properly index string characters or array elements, range must be a sequence of increasing natural numbers under the length of the string / array. Therefore the limits of the range are always truncated, and then transformed to the remainder of the Euclidean division by the lenght of the string / array. The result of slicing is the collection of string characters or array elements indexed by the elements of the transformed range. Range limits can be omitted: the default lower limit is zero, the default upper limit is the length of the string / array, excluded from the range.
+Ranges used as [index](https://psmitt.github.io/grammar/CoffeeScript.xml#Range) can slice strings and arrays. In order to properly index string characters or array elements, range must be a sequence of increasing natural numbers under the length of the string / array. Therefore the limits of the range are always truncated, and then transformed to the remainder of the Euclidean division by the lenght of the string / array. The result of slicing is the collection of string characters or array elements indexed by the elements of the transformed range. Range limits can be omitted: the default lower limit is zero, the default upper limit is the length of the string / array, excluded from the range.
 
     coffee> '0123456789'[3..6]
     '3456'
@@ -356,7 +356,7 @@ Ranges used as [index](http://rawgit.com/psmitt/metalanguage/master/examples/Cof
 
 ### Regular Expressions
 
-A [RegExp](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#RegExp) object contains a text pattern used to match character combinations in strings. Based on the matches strings can be validated, modified or splitted. The literal format of a [regular expression](http://www.regular-expressions.info) is the search pattern specified between slashes. Searching options (flags) may be specified after the closing slash.
+A [RegExp](https://psmitt.github.io/grammar/CoffeeScript.xml#RegExp) object contains a text pattern used to match character combinations in strings. Based on the matches strings can be validated, modified or splitted. The literal format of a [regular expression](http://www.regular-expressions.info) is the search pattern specified between slashes. Searching options (flags) may be specified after the closing slash.
 
 Similar to strings and comments, regular expressions do have a multiline block literal format that ignore internal whitespaces and can contain comments and interpolations. Regular expression blocks are delimited by triple slashes. 
 
@@ -387,7 +387,7 @@ Literal JavaScript code can be embedded into CoffeeScript between backticks.
 
 ## Assignments
 
-[Assigment](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Assignment) expressions make values stored in a retrievable way, or modify the content value of an already existing storage ( a.k.a. _compound assignment_ ). The storage name identifies the stored value in the current [scope](http://www.ecma-international.org/ecma-262/#sec-executable-code-and-execution-contexts). The [identifier](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Identifier) is called _property_ when the association between the name and the value is a part of an object. The identifier is called _variable_ when the association between the name and the value exists within an execution context ( e.g. in a function body ).
+[Assigment](https://psmitt.github.io/grammar/CoffeeScript.xml#Assignment) expressions make values stored in a retrievable way, or modify the content value of an already existing storage ( a.k.a. _compound assignment_ ). The storage name identifies the stored value in the current [scope](http://www.ecma-international.org/ecma-262/#sec-executable-code-and-execution-contexts). The [identifier](https://psmitt.github.io/grammar/CoffeeScript.xml#Identifier) is called _property_ when the association between the name and the value is a part of an object. The identifier is called _variable_ when the association between the name and the value exists within an execution context ( e.g. in a function body ).
 
 The indented block structure of an object description makes the braces and commas omittable. Even existing name and value associations can be reused for creation of new objects, but braces are required in this latter case to create the new scope.
 
@@ -417,7 +417,7 @@ Existing objects and arrays can be reused to create new ones. In order to includ
 
 ### Accessing Properties
 
-New properties for existing objects can be easily created by assigning a value to the property name. This is the only way to create properties with Symbol keys. Symbol keys should be stored in the outer scope if the property must be [accessible](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Accessor) directly after the assignment. Existing ( and accessible ) properties of an object can be removed from the outer scope by `delete` operator.
+New properties for existing objects can be easily created by assigning a value to the property name. This is the only way to create properties with Symbol keys. Symbol keys should be stored in the outer scope if the property must be [accessible](https://psmitt.github.io/grammar/CoffeeScript.xml#Accessor) directly after the assignment. Existing ( and accessible ) properties of an object can be removed from the outer scope by `delete` operator.
 
     coffee> obj = new Object
     {}
@@ -511,7 +511,7 @@ The existential operator `?` serves to test if an identifier exists in the curre
 
 ### Destructuring Assignments
 
-[Destructuring assignment](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Assignable) is an expression storing values exctacted from an object or array, into variables of the current scope. Identifiers on the left side have to be structured in the same way as the object or array on the right side in order to assign them the appropriate value. In case of object the identifiers must have the same name as the object's properties to match them. In case of array the assignments are based on the order of names and values.
+[Destructuring assignment](https://psmitt.github.io/grammar/CoffeeScript.xml#Assignable) is an expression storing values exctacted from an object or array, into variables of the current scope. Identifiers on the left side have to be structured in the same way as the object or array on the right side in order to assign them the appropriate value. In case of object the identifiers must have the same name as the object's properties to match them. In case of array the assignments are based on the order of names and values.
 
     ------> object =
     .......   outer : 1
@@ -546,13 +546,13 @@ Splicing means to replace a segment of an array with new elements. In order to s
 
 ## Functions
 
-A [Function](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Function) object contains an executable code block ( a.k.a _function body_ ), which can receive runtime values to process, through an optional parameter list. The literal form of a function is called _anonymous function_ which can be assigned to a function name. The execution of a function is initiated by the invocation of the function name and the enumeration of the argument expressions initializing the parameters.
+A [Function](https://psmitt.github.io/grammar/CoffeeScript.xml#Function) object contains an executable code block ( a.k.a _function body_ ), which can receive runtime values to process, through an optional parameter list. The literal form of a function is called _anonymous function_ which can be assigned to a function name. The execution of a function is initiated by the invocation of the function name and the enumeration of the argument expressions initializing the parameters.
 
 The result of a function execution is the value of the last expression evaluated in the function body, or the value of the expression returned by a `return` statement.
  
 ### Default Parameters
 
-Default [parameter](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Param) values can be given for functions in case of the corresponding argument is missing or `undefined`.
+Default [parameter](https://psmitt.github.io/grammar/CoffeeScript.xml#Param) values can be given for functions in case of the corresponding argument is missing or `undefined`.
 
     coffee> fun = (one = 1, two = 2, three = 3) -> [ one, two, three ]
     [Function: fun]
@@ -572,7 +572,7 @@ Surplus arguments does not cause error in a function call: they become evaluated
 
 ### Tagged Templates
 
-A tagged template is a [function call](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Invocation) where the arguments of the call are derived from the postfix string with interpolations following the function name __without spaces__. The first argument is the array of text fragments between the interpolations, the following arguments are the values of the interpolated expressions.
+A tagged template is a [function call](https://psmitt.github.io/grammar/CoffeeScript.xml#Invocation) where the arguments of the call are derived from the postfix string with interpolations following the function name __without spaces__. The first argument is the array of text fragments between the interpolations, the following arguments are the values of the interpolated expressions.
 
     ------> decompose = (text, interpolations...) ->
     .......   { fragments : text, interpolations }
@@ -595,7 +595,7 @@ Leading `.` closes all open calls, allowing for simpler chaining syntax.
 
 ### Generator Functions
 
-Functions containing a [Yield](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Conditional) statement in the body has a static context, preserving any changes in between two consecutive invocation. The first invocation of the function returns an iterator. The sequence of yielded values can be generated by calling the `next` method of the iterator until the generator function's body gets completed.
+Functions containing a [Yield](https://psmitt.github.io/grammar/CoffeeScript.xml#Conditional) statement in the body has a static context, preserving any changes in between two consecutive invocation. The first invocation of the function returns an iterator. The sequence of yielded values can be generated by calling the `next` method of the iterator until the generator function's body gets completed.
 
     ------> counter123 = ->
     .......   n = 0
@@ -619,7 +619,7 @@ Functions containing a [Yield](http://rawgit.com/psmitt/metalanguage/master/exam
 
 ### Conditional Expressions
 
-[Conditional](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Conditional) expressions or statements have both prefix and postfix form; the latter is used for one-liners. The flow control is determined by either `if` or `unless` keywords to the true or false direction, respectively. Prefixed conditional blocks can be extended with `else` branches.
+[Conditional](https://psmitt.github.io/grammar/CoffeeScript.xml#Conditional) expressions or statements have both prefix and postfix form; the latter is used for one-liners. The flow control is determined by either `if` or `unless` keywords to the true or false direction, respectively. Prefixed conditional blocks can be extended with `else` branches.
 
     coffee> if true then 'OK' else 'impossible'
     'OK'
@@ -635,7 +635,7 @@ Functions containing a [Yield](http://rawgit.com/psmitt/metalanguage/master/exam
 
 ### Case Selections
 
-[Switch](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Switch) flow control, based on possible values of an expression, is implementable by `switch` - `when` - `else` control structure. The blocks of the cases do not require `break` statement in the end in order to prevent fall-through; in fact, fall-through is not possible in CoffeeScript. It is valid to enumerated multiple options after `when`, separated by comma.
+[Switch](https://psmitt.github.io/grammar/CoffeeScript.xml#Switch) flow control, based on possible values of an expression, is implementable by `switch` - `when` - `else` control structure. The blocks of the cases do not require `break` statement in the end in order to prevent fall-through; in fact, fall-through is not possible in CoffeeScript. It is valid to enumerated multiple options after `when`, separated by comma.
 
     coffee> month = 5
     5
@@ -662,7 +662,7 @@ If the control expression after `switch` is omitted, the first case evaluated to
 
 ### Conditional Loops
 
-[Loop](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Loop) conditions can be also specified in prefix or postfix position; the latter is used for one-liners. The flow control is determined by either `while` or `until` keywords repeating the loop body in true or false case, respectively. Loop condition can be extended with an additional `when` condition ( a.k.a _guard clause_ ) which controls the execution of the loop body for each iteration. Loops result the array of the values of the last expression of the loop body.
+[Loop](https://psmitt.github.io/grammar/CoffeeScript.xml#Loop) conditions can be also specified in prefix or postfix position; the latter is used for one-liners. The flow control is determined by either `while` or `until` keywords repeating the loop body in true or false case, respectively. Loop condition can be extended with an additional `when` condition ( a.k.a _guard clause_ ) which controls the execution of the loop body for each iteration. Loops result the array of the values of the last expression of the loop body.
 
     coffee> n = 0
     0
@@ -671,7 +671,7 @@ If the control expression after `switch` is omitted, the first case evaluated to
     coffee> n until --n is 0 when n % 3
     [ 8, 7, 5, 4, 2, 1 ]
 
-Loops counting from and to a given value with fixed-size increments, or iterating over the keys and values of an object or array, can be implemented in a clear and comprehensible way using different forms of `for` loops. In order to iterate over numbers, the most suitable form is to use range comprehensions. Without loop parameter the range comprehension simply counts the number of iterations; the `by` stepping size is a way to influence the counter. [For loops](http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Loop) can also have an optional guard clause.
+Loops counting from and to a given value with fixed-size increments, or iterating over the keys and values of an object or array, can be implemented in a clear and comprehensible way using different forms of `for` loops. In order to iterate over numbers, the most suitable form is to use range comprehensions. Without loop parameter the range comprehension simply counts the number of iterations; the `by` stepping size is a way to influence the counter. [For loops](https://psmitt.github.io/grammar/CoffeeScript.xml#Loop) can also have an optional guard clause.
 
     coffee> n = 0
     0
